@@ -1,2 +1,2 @@
 # ruby-rookie
-Ruby tester
+Ruby
