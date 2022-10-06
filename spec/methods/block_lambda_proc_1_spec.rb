@@ -1,4 +1,4 @@
-describe('Block, Lambda and Proc; Base') do
+describe('Block, Lambda and Proc; 1') do
 
   it 'block' do
     # Il BLOCK non è un oggetto.
@@ -33,6 +33,21 @@ describe('Block, Lambda and Proc; Base') do
 
     lambda_1 = lambda { 'Hello' } # Oggetto
     lambda_2 = lambda { 'Lambda' } # Oggetto
+
+    # Sono comunque degli oggetti Proc.
+    expect(lambda_1.class).to eq(Proc)
+    expect(lambda_2.class).to eq(Proc)
+
+    message = many_lambda(lambda_1, lambda_2)
+    expect(message).to eq('Hello Lambda')
+  end
+
+  it '-> (alias for lambda)' do
+    # La -> è un oggetto.
+    # Posso passarne quante ne voglio.
+
+    lambda_1 = -> { 'Hello' } # Oggetto
+    lambda_2 = -> { 'Lambda' } # Oggetto
 
     # Sono comunque degli oggetti Proc.
     expect(lambda_1.class).to eq(Proc)

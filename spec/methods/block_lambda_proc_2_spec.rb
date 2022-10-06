@@ -1,22 +1,34 @@
-describe('Block, Lambda and Proc; Advanced') do
+describe('Block, Lambda and Proc; 2') do
 
   it 'block' do
     # Il BLOCK non si arrabbia sul numero di parametri passati.
-    message = block_params { |x| "Hello #{x}" }
-    expect(message).to eq('Hello Block')
+    expect(
+      block_params { |x| "Hello #{x}" }
+    ).to eq('Hello Block')
   end
 
   it 'proc' do
     # la PROC non si arrabbia sul numero di parametri passati.
     proc = Proc.new { |x| "Hello #{x}" }
-    message = proc_params(proc)
-    expect(message).to eq('Hello Block')
+    expect(
+      proc_params(proc)
+    ).to eq('Hello Block')
   end
 
   it 'lambda' do
     # la LAMBDA si arrabbia sul numero di parametri passati.
     lambda = lambda { |x| "Hello #{x}" }
-    expect{ lambda_params(lambda)}.to raise_error(ArgumentError)
+    expect {
+      lambda_params(lambda)
+    }.to raise_error(ArgumentError)
+  end
+
+  it '->' do
+    # la -> (LAMBDA) si arrabbia sul numero di parametri passati.
+    lambda = ->(x) { "Hello #{x}" }
+    expect {
+      lambda_params(lambda)
+    }.to raise_error(ArgumentError)
   end
 
   private

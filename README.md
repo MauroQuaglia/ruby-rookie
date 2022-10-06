@@ -1,2 +1,14 @@
 # ruby-rookie
-Ruby
+
+# Blocks
+* block 
+* proc 
+* lambda 
+* -> (è un alias per un lambda)
+
+# Equality
+* .equal? 
+* .eql?
+* ==
+* ===
+
