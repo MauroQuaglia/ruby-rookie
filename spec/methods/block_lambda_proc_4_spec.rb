@@ -1,12 +1,21 @@
 describe('Block, Lambda and Proc; 4') do
 
-  it 'return' do
-    expect(find_first_even([1, 1, 2])).to eq(2)
+  it 'block' do
+    expect(find_first_even_block([1, 1, 2])).to eq(2)
+  end
+
+  it 'lambda' do
+    expect(find_first_even_lambda([1, 1, 2])).to be_nil
   end
 
   private
 
-  def find_first_even(numbers)
+  def find_first_even_block(numbers)
+    numbers.each { |num| return num if num.even? }
+    return nil
+  end
+
+  def find_first_even_lambda(numbers)
     numbers.each { |num| return num if num.even? }
     return nil
   end
