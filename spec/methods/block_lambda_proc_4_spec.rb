@@ -16,7 +16,8 @@ describe('Block, Lambda and Proc; 4') do
   end
 
   def find_first_even_lambda(numbers)
-    numbers.each { |num| return num if num.even? }
+    l = ->(num) { return num if num.even? }
+    numbers.each { l }
     return nil
   end
 end
