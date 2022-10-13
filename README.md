@@ -12,3 +12,7 @@
 * ==
 * ===
 
+# Altro
+https://ruby-doc.org/core-3.1.1/index.html 
+* M sono le interfaccie
+

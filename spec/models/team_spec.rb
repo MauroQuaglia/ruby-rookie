@@ -6,12 +6,18 @@ describe(Team) do
   let(:stefania) { 'Stefania Scarpellini' }
   subject(:team) { described_class.new([mauro, stefania]) }
 
-  it '#count' do
-    expect(team.count).to eq(2)
-  end
+  context 'Enumerable' do
+    it '#count' do
+      expect(team.count).to eq(2)
+    end
 
-  it '#name' do
-    puts team.map(&:downcase)
+    it '#name' do
+      expect(team.map(&:downcase)).to eq(['mauro quaglia', 'stefania scarpellini'])
+    end
+
+    it '#any' do
+      expect(team.any? { |person| person.start_with?('Mauro') }).to be_truthy
+    end
   end
 
 end
