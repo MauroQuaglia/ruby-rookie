@@ -14,8 +14,22 @@ class Person
     @age <=> person.age
   end
 
-  def ==(person) #ha la precedenza su <=> se invece implementassi eql? non sarebbe così
+  def ==(person)
+    # No type check
     @name == person.name && @surname == person.surname && @age == person.age
   end
+
+  # Se implemento l'eql? dovrei implementare anche il metodo hash, perché è questo metodo che viene chiamato quando voglio mettere un oggetto in una hash
+  def eql?(person)
+    # Ci deve essere il type check
+    person.is_a?(self.class) &&
+      @name == person.name && @surname == person.surname && @age == person.age
+  end
+
+  def hash
+    @name.hash
+  end
+
+  # def equal?;end # Non deve mai avere l'override.
 
 end

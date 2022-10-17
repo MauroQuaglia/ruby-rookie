@@ -32,7 +32,7 @@ describe('Equality') do
     expect(a.hash == b.hash).to be_truthy
     expect(a.class == b.class).to be_truthy
 
-    a, b = 1, 1.0
+    a, b = 1, 1.0 # Integer, Float
     expect(a == b).to be_truthy # stesso valore, classe diversa, ma non facendo il check sulla classe va bene
     expect(a.hash == b.hash).to be_falsey
     expect(a.class == b.class).to be_falsey
