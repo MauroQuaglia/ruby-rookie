@@ -23,7 +23,7 @@ class Person
   def eql?(person)
     # Ci deve essere il type check
     person.is_a?(self.class) &&
-      @name == person.name && @surname == person.surname && @age == person.age
+      @name == person.name #&& @surname == person.surname && @age == person.age
   end
 
   def hash

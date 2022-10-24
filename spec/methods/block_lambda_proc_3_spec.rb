@@ -24,6 +24,16 @@ describe('Block, Lambda and Proc; 3') do
     ).to eq('Hello Qui sì!')
   end
 
+  it 'lambda 2 ' do
+    array = [1, 2, 3, 4]
+    # E' permesso il return nella LAMBDA.
+    # Esegue il codice al di fuori della LAMBDA
+    selector = lambda { |number | return number if number.even?}
+    value = array.each(&selector)
+    puts value
+
+  end
+
   it '->' do
     # E' permesso il return nella ->.
     # Esegue il codice al di fuori della ->

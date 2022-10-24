@@ -80,12 +80,14 @@ describe(Person) do
   context 'hash test' do
 
     it 'prova' do
-      mauro_2 = described_class.new('Mauro', 'Quagliaaaaaa', 44)
+      # La hash chiede all'oggetto compara gli oggetti con eql? e se diversi aggiunge la nuova chiave usando il metodo has dell'oggetto
+      mauro_1 = Person.new('Mauro', 'X', 33)
+      mauro_2 = Person.new('Mauro', 'Y', 44)
+      #mauro_2 = OpenStruct.new(name: 'Mauro', surname: 'X', age: 33)
       h = {}
-      h[mauro] = 'Mauro'
-      h[stefania] = 'Stefania'
-      h[mauro_2] = 'XXX'
-      puts h.inspect
+      h[mauro_1] = 'Mauro X'
+      h[mauro_2] = 'Mauro Y'
+      puts h.count
     end
 
   end
