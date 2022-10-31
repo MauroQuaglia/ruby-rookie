@@ -11,7 +11,17 @@ class Person
 
   # <, ==, >, min, max
   def <=>(person)
+    #< <= = > >=  (occhio, non == perché per quello c'è già il metodo def ==)
+    #return -1 if @age < person.age
+    #return 0 if @age == person.age
+    #return 1 if @age > person.age
     @age <=> person.age
+  end
+
+  # case equality operator. Sfortunata la scelta del nome
+  def === (person)
+    # BOH NON funziona
+    @name = person.name
   end
 
   def ==(person)
@@ -19,17 +29,17 @@ class Person
     @name == person.name && @surname == person.surname && @age == person.age
   end
 
-  # Se implemento l'eql? dovrei implementare anche il metodo hash, perché è questo metodo che viene chiamato quando voglio mettere un oggetto in una hash
+  # Se implemento l 'eql? dovrei implementare anche il metodo hash,
+  # perché è questo metodo che viene chiamato quando voglio mettere un oggetto in una hash
   def eql?(person)
-    # Ci deve essere il type check
-    person.is_a?(self.class) &&
-      @name == person.name #&& @surname == person.surname && @age == person.age
+    # Ci deve essere il type check. In questo modo è molto simile a come fa ruby.
+    person.is_a?(self.class) && self == person
   end
 
   def hash
     @name.hash
   end
 
-  # def equal?;end # Non deve mai avere l'override.
+  # def equal?;end # Non deve mai avere l' override.
 
 end

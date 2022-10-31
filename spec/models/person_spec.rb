@@ -21,7 +21,9 @@ describe(Person) do
       stefania = described_class.new('Stefania', 'Scarpellini', 43)
 
       expect(stefania < mauro).to be_falsey
-      expect(stefania == mauro).to be_truthy
+      expect(stefania = mauro).to be_truthy # = e non ==
+      expect(stefania <= mauro).to be_truthy # perché sono ==)
+      #expect(stefania == mauro).to be_truthy #ECCO, QUESTO non è per ordinare, questo chiama l'==
       expect(stefania > mauro).to be_falsey
     end
 
@@ -77,17 +79,45 @@ describe(Person) do
     end
   end
 
+  context '===' do
+
+    it 'xxx' do
+      mauro = Person.new('Mauro', 'Quaglia', 43)
+      result = 'XXX'
+
+      case mauro
+      when 'Mauro'
+        result << 'MQ'
+      when 'Stefania'
+        result << 'SS'
+      else
+        result << 'LL'
+      end
+
+      puts result
+
+
+    end
+
+  end
+
   context 'hash test' do
 
     it 'prova' do
       # La hash chiede all'oggetto compara gli oggetti con eql? e se diversi aggiunge la nuova chiave usando il metodo has dell'oggetto
       mauro_1 = Person.new('Mauro', 'X', 33)
-      mauro_2 = Person.new('Mauro', 'Y', 44)
+      mauro_2 = Person.new('Mauro', 'X', 33)
       #mauro_2 = OpenStruct.new(name: 'Mauro', surname: 'X', age: 33)
       h = {}
       h[mauro_1] = 'Mauro X'
       h[mauro_2] = 'Mauro Y'
       puts h.count
+
+      puts mauro_1.hash
+      puts mauro_1.object_id
+      puts mauro_2.hash
+      puts mauro_2.object_id
+
     end
 
   end
