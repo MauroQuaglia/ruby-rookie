@@ -1,0 +1,19 @@
+A = 3m/1g
+B = 2,8m/1g
+C = 2m/1g
+D = 1,8m/1g
+
+1gA = 30/28gB = 3/2gC = 30/18gC
+1gA + 30/28gB + 3/2gC +30/18gD = 660/126gT (numero di giri totali per ogni giro di A)
+
+Poi, notiamo che:
+(660/126)gT * 2100 = 11.000gT
+
+Da cui, quando A fa 2100 giri:
+2100gA + 2250gB + 3150gC + 3500gD = 11000gT
+
+2100gA * 3m = 6300m = 6,3 km
+
+Risposta:
+6,3 km
+
