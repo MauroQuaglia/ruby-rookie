@@ -5,6 +5,8 @@
 * proc 
 * lambda 
 * -> (è un alias per un lambda)
+* yield(1, 2) ... call(1, 2)
+* Proprio come un metodo il blocco ritorna l'ultima istruzione eseguita.
 
 # Equality
 * .equal? 

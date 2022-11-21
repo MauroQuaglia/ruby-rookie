@@ -21,7 +21,7 @@ class Person
   # case equality operator. Sfortunata la scelta del nome
   def === (person)
     # BOH NON funziona
-    @name = person.name
+    puts person.inspect
   end
 
   def ==(person)

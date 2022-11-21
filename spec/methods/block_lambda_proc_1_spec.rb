@@ -64,7 +64,7 @@ describe('Block, Lambda and Proc; 1') do
   end
 
   def only_one_block_2(parameter)
-    "#{parameter} #{yield}"
+    "#{parameter} #{yield}" if block_given? # Ti dice se al metodo è stato passato un blocco.
   end
 
   def many_proc(proc_1, proc_2)
