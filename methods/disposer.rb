@@ -1,11 +1,13 @@
-class Disposer
+module Disposer
 
-  def self.with(&block)
-    return ArgumentError('Expected a block!') unless block_given?
-    result = block.ReadData
-    block.Dispose
+  def with(connection)
+    result = ''
+    begin
+      result = yield(connection)
+      connection.dispose
+    rescue
+      connection.dispose
+    end
     result
-  rescue
-    block.Dispose
   end
 end
