@@ -1,13 +1,10 @@
 module Disposer
 
   def with(connection)
-    result = ''
     begin
-      result = yield(connection)
-      connection.dispose
-    rescue
+      yield(connection)
+    ensure
       connection.dispose
     end
-    result
   end
 end
