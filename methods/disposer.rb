@@ -1,5 +1,4 @@
 module Disposer
-
   def with(connection)
     begin
       yield(connection)

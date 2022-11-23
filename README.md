@@ -8,6 +8,9 @@
 * yield(1, 2) ... call(1, 2)
 * Proprio come un metodo il blocco ritorna l'ultima istruzione eseguita.
 * Il blocco afferra il binding locale delle variabili nel momento in cui viene definito e se le porta con se: il blocco è una closure. 
+* $var = define a global variable
+* Scope gates keywords: class, module, def
+
 
 # Equality
 * .equal? 

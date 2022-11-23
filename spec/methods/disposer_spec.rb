@@ -10,8 +10,8 @@ describe(Disposer) do
 
     result = with(connection) do |conn|
       conn.read_data
-    end
 
+    end
     expect(result).to eq('Lorem ipsum!')
   end
 
