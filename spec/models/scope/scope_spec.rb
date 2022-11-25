@@ -12,3 +12,21 @@ describe(Stuff2) do
     counter
   end
 end
+
+class Stuff3
+  @var = 1
+
+  def call
+    yield
+  end
+end
+
+describe(Stuff3) do
+  it 'block CAN NOT see the local variables of the object' do
+    Stuff3.new.call { puts local_variables }
+  end
+
+  it 'block passed with instance_eval CAN see the local variables of the object' do
+    Stuff3.new.instance_eval { puts local_variables }
+  end
+end

@@ -19,4 +19,3 @@ Stuff2 = Class.new do #Class (maiuscolo) non √® scope gate, lo scope esterno pu√
   end
 end
 
-

@@ -10,6 +10,7 @@
 * Il blocco afferra il binding locale delle variabili nel momento in cui viene definito e se le porta con se: il blocco è una closure. 
 * $var = define a global variable
 * Scope gates keywords: class, module, def
+* Trucco per bypassare gli scope gates: class -> Class.new, module -> Module.new, def -> define_method
 
 
 # Equality
