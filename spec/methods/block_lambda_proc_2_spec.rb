@@ -9,7 +9,8 @@ describe('Block, Lambda and Proc; 2') do
 
   it 'proc' do
     # la PROC non si arrabbia sul numero di parametri passati.
-    proc = Proc.new { |x| "Hello #{x}" }
+    # proc o Proc.new
+    proc = proc { |x| "Hello #{x}" }
     expect(
       proc_params(proc)
     ).to eq('Hello Block')
@@ -29,6 +30,16 @@ describe('Block, Lambda and Proc; 2') do
     expect {
       lambda_params(lambda)
     }.to raise_error(ArgumentError)
+  end
+
+  it 'class' do
+    lambda = -> { "Hello" }
+    expect(lambda.class).to eq(Proc)
+    expect(lambda.lambda?).to be_truthy
+
+    proc = Proc.new {"Hello"}
+    expect(proc.class).to eq(Proc)
+    expect(proc.lambda?).to be_falsey
   end
 
   private

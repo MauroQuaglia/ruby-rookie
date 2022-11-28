@@ -11,7 +11,7 @@
 * $var = define a global variable
 * Scope gates keywords: class, module, def
 * Trucco per bypassare gli scope gates: class -> Class.new, module -> Module.new, def -> define_method
-
+* La & permette di convertire un blocco in una proc e vice versa
 
 # Equality
 * .equal? 
