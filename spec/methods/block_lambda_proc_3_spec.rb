@@ -1,14 +1,16 @@
 describe('Block, Lambda and Proc; 3') do
 
   it 'return in block' do
-    # Non è permesso il return nel blocco.
+    # Non è permesso il return nel blocco. O meglio è permesso ma esce dal contesto dove il blocco è definito ossia nel test.
+    # e non potendo uscire dallo scope generale da questa eccezione.
     expect {
       block_params { return "Hello"; "Block" }
     }.to raise_error(LocalJumpError)
   end
 
   it 'proc' do
-    # Non è permesso il return nella PROC.
+    # Non è permesso il return nel blocco. O meglio è permesso ma esce dal contesto dove il blocco è definito ossia nel test.
+    # e non potendo uscire dallo scope generale da questa eccezione.
     proc = Proc.new { return "Hello"; "Block" }
     expect {
       proc_params(proc)
@@ -17,7 +19,7 @@ describe('Block, Lambda and Proc; 3') do
 
   it 'lambda' do
     # E' permesso il return nella LAMBDA.
-    # Esegue il codice al di fuori della LAMBDA
+    # Esegue il codice al di fuori della LAMBDA, ossia esce dalla LAMBDA
     lambda = lambda { return "Hello"; "Block" }
     expect(
       lambda_params(lambda)
