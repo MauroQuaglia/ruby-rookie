@@ -1,4 +1,5 @@
 # ruby-rookie
+[ruby-3.1.1](https://ruby-doc.org/core-3.1.1/)
 
 # Blocks
 * block 
@@ -24,3 +25,8 @@
 https://ruby-doc.org/core-3.1.1/index.html 
 * M sono le interfaccie
 * Capire is_a, class_name, ecc
+
+
+# Best Pratice
+* Meglio non usare le @@
+* La lambda meglio della Proc
