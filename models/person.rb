@@ -9,6 +9,10 @@ class Person
     @age = age
   end
 
+  def prova
+    name.length
+  end
+
   # <, ==, >, min, max
   def <=>(person)
     #< <= = > >=  (occhio, non == perché per quello c'è già il metodo def ==)

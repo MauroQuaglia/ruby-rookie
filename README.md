@@ -26,7 +26,13 @@ https://ruby-doc.org/core-3.1.1/index.html
 * M sono le interfaccie
 * Capire is_a, class_name, ecc
 
-
+# Wrap Methods
+* alias (ha effetto su tutto), refine (ha effetto locale), prepend (ha effetto su tutto, da preferire)
+* include prima originale poi modulo 
+* prepend prima modulo poi originale
 # Best Pratice
 * Meglio non usare le @@
 * La lambda meglio della Proc
+
+# Classi, Moduli, istanze
+* Un caso per tipo ma tutto cio che si può fare su una classe si puo fare su un modulo quindi bastano classe e istanza.
