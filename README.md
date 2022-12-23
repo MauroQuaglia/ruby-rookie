@@ -15,9 +15,10 @@
 * La & permette di convertire un blocco in una proc e vice versa
 
 # Method missing (best pratice)
-* Quando si implementa il method_missing meglio implementare anche il respond_to_missing?
-* Attenzione! Quando implemeto il method_missing possono finire in questo metodo anche chiamate che non mi aspetto, quendi sempre meglio fare un check a priori
-* di ciò che mi aspetto e poi chiamare il super che sarebbe il method_missing overraidato che lancerà l'eccezione NoMethodError
+* NB1) Quando si implementa il method_missing meglio implementare anche il respond_to_missing?
+* NB2) Quando implemeto il method_missing possono finire in questo metodo anche chiamate che non mi aspetto, quendi sempre meglio fare un check a priori di ciò che mi aspetto e poi chiamare il super che sarebbe il method_missing overraidato che lancerà l'eccezione NoMethodError
+* NB3) Occhio che se eredito da una classe che ha un metodo di istanza ".display" (per esempio) e mi aspetto che il method_missing catturi un ".display" questo non funzionerà, sempre vince il metodo ereditato. In tal caso bisognerebbe "svuotare" la classe usando un Blank Slate o ereditare direttamente da BasicObject (e non Object) che non ha praticamente metodi di itanza
+ 
 
 # Equality
 * .equal? 
