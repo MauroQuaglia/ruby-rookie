@@ -40,3 +40,13 @@ describe('execute') do
 end
 
 puts Class.instance_methods(false)
+
+
+class C
+end
+
+module D
+end
+
+c = C.new
+#d = D.new non posso fare istanze
