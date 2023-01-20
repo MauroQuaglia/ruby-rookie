@@ -1,1 +1,0 @@
-usa la gemma test-unit, ruby 2.2 e MRI (l'interprete ufficiale)

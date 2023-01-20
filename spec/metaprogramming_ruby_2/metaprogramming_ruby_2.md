@@ -15,3 +15,8 @@
 
 ## self
 * `self` rappresenta sempre il riferimento all'oggetto  corrente
+
+## Simboli o Stringhe
+* I simboli sono usati di solito per i nomi delle cose, per esempio dei metodi, dato che non ci aspettiamo che il nome di un metodo cambi, ed essendo un simbolo immutabile.
+* Per esempio, invece di  `1.send('+', 2)`, di solito si usa `1.send(:+, 2)`
+* Comunque è una banalità passare da una stringa a un simbolo  e viceversa.
