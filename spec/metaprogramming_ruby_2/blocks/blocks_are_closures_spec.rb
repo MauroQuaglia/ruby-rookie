@@ -17,6 +17,8 @@ end
 # Questo dimostra che il blocco porta sempre con se il binding corrente, quello di quando è stato definito.
 puts First.new.test #<First:0x00007f848e53ac18> and #<Second:0x00007f848e53aab0>
 
+puts '------------------'
+
 # Questo dimostra che il blocco è una closure.
 # Dall'esterno non posso accedere alle variabili al suo interno.
 Second.new.execute do |x|
@@ -24,6 +26,15 @@ Second.new.execute do |x|
   puts('ciao')
 end
 # puts a  undefined local variable or method `a' for main:Object
+
+
+puts '------------------'
+
+b = 5
+Second.new.execute do |x|
+  b += 1
+end
+puts b
 
 
 describe('execute') do
