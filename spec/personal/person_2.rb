@@ -1,5 +1,6 @@
 # https://ruby-doc.org/core-3.1.1/Comparable.html
-class Person
+
+class Person1
   include Comparable # richiede di implementare il metodo "<=>" (serve per ordinare)
   attr_reader(:name, :surname, :age)
 
@@ -9,28 +10,10 @@ class Person
     @age = age
   end
 
-  def prova
-    name.length
-  end
-
-  # <, ==, >, min, max
-  def <=>(person)
-    #< <= = > >=  (occhio, non == perché per quello c'è già il metodo def ==)
-    #return -1 if @age < person.age
-    #return 0 if @age == person.age
-    #return 1 if @age > person.age
+  def <=>(person) #< <= == > >=
+    # ATTENZIONE che se implemento il metodo ==, poi verrà usato quello per fare l'uguaglianza.
+    # Quindi se uso <=> meglio non implementare ==
     @age <=> person.age
-  end
-
-  # case equality operator. Sfortunata la scelta del nome
-  def === (person)
-    # BOH NON funziona
-    puts person.inspect
-  end
-
-  def ==(person)
-    # No type check
-    @name == person.name && @surname == person.surname && @age == person.age
   end
 
   # Se implemento l 'eql? dovrei implementare anche il metodo hash,

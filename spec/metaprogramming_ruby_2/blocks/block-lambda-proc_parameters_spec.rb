@@ -1,4 +1,4 @@
-describe('Block, Lambda and Proc; 2') do
+describe('Block, Lambda and Proc') do
 
   it 'block' do
     # Il BLOCK non si arrabbia sul numero di parametri passati.
@@ -24,29 +24,11 @@ describe('Block, Lambda and Proc; 2') do
     }.to raise_error(ArgumentError)
   end
 
-  it '->' do
-    # la -> (LAMBDA) si arrabbia sul numero di parametri passati.
-    lambda = ->(x) { "Hello #{x}" }
-    expect {
-      lambda_params(lambda)
-    }.to raise_error(ArgumentError)
-  end
-
-  it 'class' do
-    lambda = -> { "Hello" }
-    expect(lambda.class).to eq(Proc)
-    expect(lambda.lambda?).to be_truthy
-
-    proc = Proc.new {"Hello"}
-    expect(proc.class).to eq(Proc)
-    expect(proc.lambda?).to be_falsey
-  end
-
   private
 
-  def block_params(&block)
+  def block_params
     # Il secondo parametro viene ignorato e non viene data nessuna eccezione.
-    block.call('Block', 'IGNORATO')
+    yield('Block', 'IGNORATO')
   end
 
   def proc_params(proc)

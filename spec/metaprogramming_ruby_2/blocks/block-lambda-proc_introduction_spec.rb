@@ -1,8 +1,18 @@
-describe('Block, Lambda and Proc; 1') do
+# Proc e Lambda sono "più o meno" la stessa cosa tanto che lambda.class = Proc
+# Ci sono però due sottili differenze:
+# 1. come funziona il return
+# 2. come fanno il check sui parametri passati
+
+describe('Block, Lambda and Proc') do
+
+  it 'proc and lambda' do
+    expect(Proc.new {}.class).to eq(Proc)
+    expect(lambda {}.class).to eq(Proc)
+  end
 
   it 'block' do
     # Il BLOCK non è un oggetto.
-    # Ne posso passarne solo uno per volta, non c'è modo di passarne due.
+    # Ne posso passare solo uno per volta, non c'è modo di passarne due.
 
     # Primo modo
     message_1 = only_one_block_1 { 'Hello Block' }
@@ -24,7 +34,6 @@ describe('Block, Lambda and Proc; 1') do
 
     message = many_proc(proc_1, proc_2)
     expect(message).to eq('Hello Proc')
-
   end
 
   it 'lambda' do
@@ -42,28 +51,24 @@ describe('Block, Lambda and Proc; 1') do
     expect(message).to eq('Hello Lambda')
   end
 
-  it '-> (alias for lambda)' do
-    # La -> è un oggetto.
-    # Posso passarne quante ne voglio.
+  it 'class' do
+    lambda = -> { "Hello" }
+    expect(lambda.class).to eq(Proc)
+    expect(lambda.lambda?).to be_truthy
 
-    lambda_1 = -> { 'Hello' } # Oggetto
-    lambda_2 = -> { 'Lambda' } # Oggetto
-
-    # Sono comunque degli oggetti Proc.
-    expect(lambda_1.class).to eq(Proc)
-    expect(lambda_2.class).to eq(Proc)
-
-    message = many_lambda(lambda_1, lambda_2)
-    expect(message).to eq('Hello Lambda')
+    proc = Proc.new {"Hello"}
+    expect(proc.class).to eq(Proc)
+    expect(proc.lambda?).to be_falsey
   end
 
   private
 
-  def only_one_block_1(&block)
+  def only_one_block_1(&block) # esplicito il nome del blocco
+    #& il blocco diventa una proc
     block.call
   end
 
-  def only_one_block_2(parameter)
+  def only_one_block_2(parameter) # il blocco è implicito
     "#{parameter} #{yield}" if block_given? # Ti dice se al metodo è stato passato un blocco.
   end
 
@@ -75,4 +80,3 @@ describe('Block, Lambda and Proc; 1') do
     "#{lambda_1.call} #{lambda_2.call}"
   end
 end
-

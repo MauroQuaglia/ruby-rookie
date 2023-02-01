@@ -12,7 +12,7 @@ end
 using(StringRefinement)
 puts("War and Peace".length)
 
-p = Person.new('Mauro', 'Quaglia', 43)
+p = Person1.new('Mauro', 'Quaglia', 43)
 puts p.prova
 
 puts('----------------------')

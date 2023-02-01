@@ -1,62 +1,47 @@
+require_relative('person_1.rb')
 require('ostruct')
-require_relative('../../models/person.rb')
 
-describe(Person) do
+describe(Person1) do
   let(:mauro) { described_class.new('Mauro', 'Quaglia', 43) }
-  let(:stefania) { described_class.new('Stefania', 'Scarpellini', 34) }
+  let(:stefania) { described_class.new('Stefania', 'Lina', 34) }
 
-  describe '#<=>, eql?' do
-
-    it 'the age is <' do
-      mauro = described_class.new('Mauro', 'Quaglia', 43)
-      stefania = described_class.new('Stefania', 'Scarpellini', 34)
+  describe 'Comparable' do
+    it '<' do
+      stefania = described_class.new('Stefania', 'Lina', 30)
+      mauro = described_class.new('Mauro', 'Quaglia', 40)
 
       expect(stefania < mauro).to be_truthy
       expect(stefania == mauro).to be_falsey
       expect(stefania > mauro).to be_falsey
     end
 
-    it 'the age is ==' do
-      mauro = described_class.new('Mauro', 'Quaglia', 43)
-      stefania = described_class.new('Stefania', 'Scarpellini', 43)
+    it '==' do
+      stefania = described_class.new('Stefania', 'Lina', 30)
+      mauro = described_class.new('Mauro', 'Quaglia', 30)
 
       expect(stefania < mauro).to be_falsey
-      expect(stefania = mauro).to be_truthy # = e non ==
-      expect(stefania <= mauro).to be_truthy # perché sono ==)
-      #expect(stefania == mauro).to be_truthy #ECCO, QUESTO non è per ordinare, questo chiama l'==
+      expect(stefania == mauro).to be_truthy
       expect(stefania > mauro).to be_falsey
     end
 
-    it 'the age is >' do
-      mauro = described_class.new('Mauro', 'Quaglia', 34)
-      stefania = described_class.new('Stefania', 'Scarpellini', 43)
+    it 'min' do
+      mauro = described_class.new('Mauro', 'Quaglia', 43)
+      stefania = described_class.new('Stefania', 'Lina', 34)
 
-      expect(stefania < mauro).to be_falsey
-      expect(stefania == mauro).to be_falsey
-      expect(stefania > mauro).to be_truthy
+      expect([mauro, stefania].min).to eq(stefania)
     end
-
-    describe 'Comparable' do
-      it 'min' do
-        mauro = described_class.new('Mauro', 'Quaglia', 43)
-        stefania = described_class.new('Stefania', 'Scarpellini', 34)
-
-        expect([mauro, stefania].min).to eq(stefania)
-      end
-    end
-
   end
 
   describe '#==' do
     it 'should be the same person (and same type of class)' do
-      mauro_person_1 = Person.new('Mauro', 'Quaglia', 43)
-      mauro_person_2 = Person.new('Mauro', 'Quaglia', 43)
+      mauro_person_1 = Person1.new('Mauro', 'Quaglia', 43)
+      mauro_person_2 = Person1.new('Mauro', 'Quaglia', 43)
 
       expect(mauro_person_1 == mauro_person_2).to be_truthy
     end
 
     it 'should be the same person (and different type of class)' do
-      mauro_person_1 = Person.new('Mauro', 'Quaglia', 43)
+      mauro_person_1 = Person1.new('Mauro', 'Quaglia', 43)
       mauro_person_2 = OpenStruct.new(name: 'Mauro', surname: 'Quaglia', age: 43)
 
       expect(mauro_person_1 == mauro_person_2).to be_truthy
@@ -65,14 +50,14 @@ describe(Person) do
 
   describe '#eql?' do
     it 'should be the same person (and same type of class)' do
-      mauro_person_1 = Person.new('Mauro', 'Quaglia', 43)
-      mauro_person_2 = Person.new('Mauro', 'Quaglia', 43)
+      mauro_person_1 = Person1.new('Mauro', 'Quaglia', 43)
+      mauro_person_2 = Person1.new('Mauro', 'Quaglia', 43)
 
       expect(mauro_person_1.eql?(mauro_person_2)).to be_truthy
     end
 
     it 'should be the same person (and different type of class)' do
-      mauro_person_1 = Person.new('Mauro', 'Quaglia', 43)
+      mauro_person_1 = Person1.new('Mauro', 'Quaglia', 43)
       mauro_person_2 = OpenStruct.new(name: 'Mauro', surname: 'Quaglia', age: 43)
 
       expect(mauro_person_1.eql?(mauro_person_2)).to be_falsey
@@ -82,7 +67,7 @@ describe(Person) do
   context '===' do
 
     it 'xxx' do
-      mauro = Person.new('Mauro', 'Quaglia', 43)
+      mauro = Person1.new('Mauro', 'Quaglia', 43)
       result = 'XXX'
 
       case mauro
@@ -96,7 +81,6 @@ describe(Person) do
 
       puts result
 
-
     end
 
   end
@@ -105,8 +89,8 @@ describe(Person) do
 
     it 'prova' do
       # La hash chiede all'oggetto compara gli oggetti con eql? e se diversi aggiunge la nuova chiave usando il metodo has dell'oggetto
-      mauro_1 = Person.new('Mauro', 'X', 33)
-      mauro_2 = Person.new('Mauro', 'X', 33)
+      mauro_1 = Person1.new('Mauro', 'X', 33)
+      mauro_2 = Person1.new('Mauro', 'X', 33)
       #mauro_2 = OpenStruct.new(name: 'Mauro', surname: 'X', age: 33)
       h = {}
       h[mauro_1] = 'Mauro X'

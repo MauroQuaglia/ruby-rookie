@@ -2,8 +2,8 @@ require_relative('../../models/a_team.rb')
 require_relative('../../models/person.rb')
 
 describe(ATeam) do
-  let(:mauro) { Person.new('Mauro', 'Quaglia', 43) }
-  let(:stefania) { Person.new('Stefania', 'Scarpellini', 34) }
+  let(:mauro) { Person1.new('Mauro', 'Quaglia', 43) }
+  let(:stefania) { Person1.new('Stefania', 'Scarpellini', 34) }
   subject(:a_team) { described_class.new([mauro, stefania]) }
 
   context 'Enumerable' do
