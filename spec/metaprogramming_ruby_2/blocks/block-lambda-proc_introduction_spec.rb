@@ -56,19 +56,21 @@ describe('Block, Lambda and Proc') do
     expect(lambda.class).to eq(Proc)
     expect(lambda.lambda?).to be_truthy
 
-    proc = Proc.new {"Hello"}
+    proc = Proc.new { "Hello" }
     expect(proc.class).to eq(Proc)
     expect(proc.lambda?).to be_falsey
   end
 
   private
 
-  def only_one_block_1(&block) # esplicito il nome del blocco
+  def only_one_block_1(&block)
+    # esplicito il nome del blocco
     #& il blocco diventa una proc
     block.call
   end
 
-  def only_one_block_2(parameter) # il blocco è implicito
+  def only_one_block_2(parameter)
+    # il blocco è implicito
     "#{parameter} #{yield}" if block_given? # Ti dice se al metodo è stato passato un blocco.
   end
 

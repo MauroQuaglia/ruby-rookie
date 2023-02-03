@@ -1,3 +1,5 @@
+# Parole chiave: Proc.new, proc, lambda, ->, &, method
+
 # Un blocco è l'unica cosa in ruby che non è un oggetto.
 # I Callable object sono: blocchi, proc, lambda, metodi.
 
@@ -33,11 +35,33 @@ def math(a, b)
   puts yield(a, b)
 end
 
-def do_math(a, b, &operation) #& e diventa una proc, perché mi serve un nome
+def do_math(a, b, &operation)
+  #& e diventa una proc, perché mi serve un nome
   math(a, b, &operation) #& e torna un blocco
 end
 
 do_math(2, 3) { |x, y| x * y } #blocco
+
+# ------------------------------------------------------
+# Attenzione, anche i metodi sono callable object!
+class MyMethodClass
+  def initialize
+    @x = 1
+  end
+
+  def my_method(y)
+    @x + y
+  end
+end
+
+obj = MyMethodClass.new
+callable_method = obj.method(:my_method)
+puts callable_method.call(10) # Anche i metodi sono callable object!
+
+# Posso anche convertirlo in una proc!
+my_proc = callable_method.to_proc
+puts my_proc.class
+puts my_proc.call(100)
 
 describe('execute') do
 end

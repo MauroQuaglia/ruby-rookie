@@ -29,11 +29,15 @@ describe('Block, Lambda and Proc') do
     ).to eq('Hello Qui sì!')
   end
 
-  it 'lambda 2 ' do
+  it 'example' do
     array = [1, 2, 3, 4]
-    selector = lambda { |number| return number if number.even? }
-    value = array.each(&selector)
-    puts value
+
+    expect {
+      array.each { |value| return value if value.even? }
+    }.to raise_error(LocalJumpError)
+
+    selector = lambda { |number| number == 4 ? puts(number) : return }
+    array.each(&selector)
   end
 
   private

@@ -30,7 +30,17 @@ decrement_counter
 decrement_counter
 puts counter_value
 
+puts '---altro modo---'
+# Un altro modo di fare shared scope è usare una lambda, ma non cambia nulla:
+lambda {
+  a = 0
+  Kernel.define_method(:add_a) { a += 1 }
+  Kernel.define_method(:my_a) { a }
+}.call
 
+add_a
+add_a
+puts my_a
 
 describe('execute') do
 end
