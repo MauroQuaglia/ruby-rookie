@@ -1,5 +1,6 @@
 class ClassInstanceVariable1
-  @my_var = 1 # Variabile di istanza di Class
+  @my_var = 1 # Variabile di istanza di Class. D'altronde ClassInstanceVariable1 = Class.new
+              # In questo caso starà nell'Eigen class di Class.new altrimenti qualunque altra classe la vedrebbe.
 
   def self.read
     # E' accessibile solo dalla classe stessa, non da metodi di istanza della classe ne da classi derivate.
@@ -7,7 +8,7 @@ class ClassInstanceVariable1
   end
 
   def write
-    @my_var = 2 # Variabile di istanza di ClassInstanceVariable1
+    @my_var = 2 # Variabile di istanza di ClassInstanceVariable1. D'altronde obj = ClassInstanceVariable1.new
   end
 
   def read
