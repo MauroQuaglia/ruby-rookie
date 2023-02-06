@@ -2,7 +2,7 @@
 
 class Person1
   include Comparable # richiede di implementare il metodo "<=>" (serve per ordinare)
-  attr_reader(:name, :surname, :age)
+  attr_reader :name, :surname, :age
 
   def initialize(name, surname, age)
     @name = name
@@ -10,9 +10,14 @@ class Person1
     @age = age
   end
 
-  def <=>(person) #< <= == > >=
+  def <=>(person)
+    #< <= == > >=
     # ATTENZIONE che se implemento il metodo ==, poi verrà usato quello per fare l'uguaglianza.
-    # Quindi se uso <=> meglio non implementare ==
-    @age <=> person.age
+    # Quindi se uso <=> meglio non implementare ==, cioè è da valutare a seconda dei casi
+
+    # @age <=> person.age - in maniera esplicita sarebbe quanto segue:
+    return -1 if @age < person.age
+    return 0 if @age == person.age
+    return 1 if @age > person.age
   end
 end

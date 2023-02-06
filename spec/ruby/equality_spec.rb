@@ -1,5 +1,5 @@
 require_relative('../../models/person.rb')
-
+#https://shopify.engineering/implementing-equality-in-ruby
 class A; end
 class B < A; end
 

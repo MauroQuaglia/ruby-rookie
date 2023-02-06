@@ -1,4 +1,4 @@
-describe('Block, Lambda and Proc') do
+describe('Block, Lambda and Proc: return 1') do
 
   it 'block' do
     # Il return esce dal contesto dove il blocco è definito ossia dal test.
@@ -28,19 +28,6 @@ describe('Block, Lambda and Proc') do
       lambda_params(lambda)
     ).to eq('Hello Qui sì!')
   end
-
-  it 'example' do
-    array = [1, 2, 3, 4]
-
-    expect {
-      array.each { |value| return value if value.even? }
-    }.to raise_error(LocalJumpError)
-
-    selector = lambda { |number| number == 4 ? puts(number) : return }
-    array.each(&selector)
-  end
-
-  private
 
   def block_params
     yield
