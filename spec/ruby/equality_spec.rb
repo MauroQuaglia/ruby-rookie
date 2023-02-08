@@ -1,8 +1,4 @@
-require_relative('../../models/person.rb')
 #https://shopify.engineering/implementing-equality-in-ruby
-class A; end
-class B < A; end
-
 describe('Equality') do
 
   it 'equal? (based on .object_id method)' do

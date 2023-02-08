@@ -1,6 +1,6 @@
 # https://ruby-doc.org/core-3.1.1/Enumerable.html
-class ATeam
-   include Enumerable # richiede di implementare il metodo "each"
+class TeamEnumerable
+  include Enumerable # richiede di implementare il metodo "each"
 
   def initialize(members)
     @members = members

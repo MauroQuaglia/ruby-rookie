@@ -1,9 +1,8 @@
-require_relative('../../models/team.rb')
-require_relative('../../models/person.rb')
+require_relative('team_enumerable')
 
-describe(Team) do
-  let(:mauro) { 'Mauro Quaglia' }
-  let(:stefania) { 'Stefania Scarpellini' }
+describe(TeamEnumerable) do
+  let(:mauro) { 'Mauro' }
+  let(:stefania) { 'Stefania' }
   subject(:team) { described_class.new([mauro, stefania]) }
 
   context 'Enumerable' do
@@ -12,7 +11,7 @@ describe(Team) do
     end
 
     it '#name' do
-      expect(team.map(&:downcase)).to eq(['mauro quaglia', 'stefania scarpellini'])
+      expect(team.map(&:downcase)).to eq(%w[mauro stefania])
     end
 
     it '#any' do

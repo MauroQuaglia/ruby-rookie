@@ -1,7 +1,6 @@
-require_relative('person_1.rb')
-require('ostruct')
+require_relative('person_comparable.rb')
 
-describe(Person1) do
+describe(PersonComparable) do
   let(:mauro) { described_class.new('Mauro', 'Quaglia', 43) }
   let(:stefania) { described_class.new('Stefania', 'Lina', 34) }
 

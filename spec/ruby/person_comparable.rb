@@ -1,6 +1,6 @@
 # https://ruby-doc.org/core-3.1.1/Comparable.html
 
-class Person1
+class PersonComparable
   include Comparable # richiede di implementare il metodo "<=>" (serve per ordinare)
   attr_reader :name, :surname, :age
 
