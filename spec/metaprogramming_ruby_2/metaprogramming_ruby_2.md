@@ -25,3 +25,7 @@
 * Si può fare in diversi modi: around alias, refinement wapper, prepend wrapper. Quest'ultimo è quello considerato più pulito ed esplicito.
 * Around Alias e Prepend wrapper hanno scope globale
 * Refinement Wrapper ha uno scope più limitato.
+
+# eval
+* Valutando stringhe di test ci possono essere problemi di sicurezza, tipo Code injection.
+* Meglio limitare l'uso di eval a cioè che scrivo io piuttosto che a cioè che può scrivere chiunque.
