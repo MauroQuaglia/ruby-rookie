@@ -29,3 +29,4 @@
 # eval
 * Valutando stringhe di test ci possono essere problemi di sicurezza, tipo Code injection.
 * Meglio limitare l'uso di eval a cioè che scrivo io piuttosto che a cioè che può scrivere chiunque.
+* In ogni caso, si sconsiglia sempre l'uso di eval in favore di altre soluzioni.

@@ -46,3 +46,6 @@ describe 'class_eval' do
     expect(1.my_method).to eq('Hello!')
   end
 end
+puts 'smsms,'
+puts $$
+puts `ps -aux | grep #{$$}`
