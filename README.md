@@ -12,7 +12,7 @@
 * $var = define a global variable
 * Scope gates keywords: class, module, def
 * Trucco per bypassare gli scope gates: class -> Class.new, module -> Module.new, def -> define_method
-* La & permette di convertire un blocco in una proc e vice versa
+* La & permette di convertire un blocco in una proc e vice versa (Di fatto la & è come chiamare il metodo .to_proc)
 
 # Method missing (best pratice)
 * NB1) Quando si implementa il method_missing meglio implementare anche il respond_to_missing?
