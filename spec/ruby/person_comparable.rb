@@ -19,5 +19,6 @@ class PersonComparable
     return -1 if @age < person.age
     return 0 if @age == person.age
     return 1 if @age > person.age
+    #nil se non sono comparabili
   end
 end
