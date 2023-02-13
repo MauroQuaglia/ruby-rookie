@@ -1,28 +1,25 @@
-# MyTask già esistente.
-class MyTask
-  def to_s
-    'ciao'
+# Incapsulo una classe già esistente per evitare possibili conflitti con classi che hanno già lo stesso nome.
+
+# MyTask già esistente, magari presente in una gemma o in una versione precedente del mio codice.
+class Task
+  def type
+    'Task#type'
   end
 end
-puts MyTask.new.to_s
 
-# Il mio nuovo MyTask andrebbe in conflitto con il precedente.
-=begin
-class MyTask
-  def to_s
-    'xxx'
-  end
-end
-puts MyTask.new.to_s
-=end
-
-module Custom
-  class MyTask
-    def to_s
-      'xxx'
+# Se creo un'altra classe Task, vado in conflitto con la precedente, se voglio evitare tutto ciò posso fare un wrap con un namespace.
+# Basta usare la keyword "module"
+module MyApp
+  class Task
+    def type
+      'MyApp#Task#type'
     end
   end
 end
-puts Custom::MyTask.new.to_s
 
-describe('execute') {}
+describe('Spell: Namespace') do
+  it 'should not be in conflict' do
+    expect(Task.new.type).to eq('Task#type')
+    expect(MyApp::Task.new.type).to eq('MyApp#Task#type')
+  end
+end

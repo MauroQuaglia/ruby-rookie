@@ -1,7 +1,5 @@
-describe 'execute' do
-
+describe 'MRI' do
   it 'Should use the MRI interpreter' do
-    expect(RbConfig::CONFIG["RUBY_INSTALL_NAME"]).to eq('ruby') # MRI
+    expect(RbConfig::CONFIG["RUBY_INSTALL_NAME"]).to eq('ruby')
   end
-
 end

@@ -1,16 +1,15 @@
-a = 'AIUTO!'
-puts a.downcase # aiuto!
-
 # Se il metodo esite già ne sto facendo un override e quindi una monkeypacth!
 
-class String
-  def downcase
-    'downcase'
+describe('Spell: Monkeypatch') do
+  it 'should monkeypatch downcase method' do
+    expect("MONKEYPATCH".downcase).to eq('monkeypatch')
+
+    class String
+      def downcase
+        "No, il downcase no!"
+      end
+    end
+
+    expect("MONKEYPATCH".downcase).to eq('No, il downcase no!')
   end
 end
-
-puts a.downcase # downcase
-
-describe('execute') {}
-# Se l classe non esiste, la keyword class la crea, ma se già esiste la keyword class la riapre.
-# In un certo con class mi sposto nel contesto della classe.
