@@ -1,24 +1,20 @@
-class A
-end
-
-puts A.ancestors # [Object, Kernel, BasicObject]
 # Il Kernel è un modulo e contiene vari metodi di utilità.
+# Per cui quando voglio aggingere un metodo di utilità condiviso un pò' da tutti è bene metterlo nel modulo Kernel.
+# Il Kernel è incliso in Object.
 
-#Per cui quando voglio aggingere un metodo di utilità condiviso un po da tutti è bene metterlo nel modulo Kernel.
-
-a = A.new
-# a.mq Questo assicura che il metodo non esiste già :-)
-
+# Riapro il Kernel
 module Kernel
   def mq
-    'Mauro Quaglia!'
+    'Mauro'
   end
 end
 
-puts a.mq #Mauro Quaglia!
+describe('Spell: Kernel Method') do
+  it 'the method should exist (Object)' do
+    expect(Object.new.mq).to eq('Mauro')
+  end
 
-class B
+  it 'the method should not exist (BasicObject)' do
+    expect { BasicObject.new.mq }.to raise_exception(NoMethodError)
+  end
 end
-puts B.new.mq #Mauro Quaglia!
-
-describe('execute') {}

@@ -1,20 +1,31 @@
-class MyClass
+# Con la notazione "." devo sapere a priori il nome del metodo da chiamare.
+# Con la notazione "send" il metodo da chiamare lo posso comporre strada facendo e posso aspettare fino all'ultimo prima di chiamarlo.
+# L'idea è che il nome del metodo da chiamare lo posso comporre dinamicamente.
+
+class DynamicDispatch
   def mauro_quaglia
-    "Mauro Quaglia"
+    "Mauro"
   end
 end
 
-name = "Mauro"
-surname = "Quaglia"
+describe('Spell: Dynamic Dispatch ') do
 
-mq = MyClass.new
+  it '. notation' do
+    obj = DynamicDispatch.new
 
-# Con la notazione "." devo sapere a priori il nome del metodo da chiamare.
-puts mq.mauro_quaglia
+    expect(
+      obj.mauro_quaglia
+    ).to eq('Mauro')
+  end
 
-# Con la notazione "send" il metodo da chiamare lo posso comporre strada facendo e posso aspettare fino all'ultimo prima di chiamarlo sul mio oggetto mq
-puts mq.send("#{name.downcase}_#{surname.downcase}")
+  it 'send notation' do
+    obj = DynamicDispatch.new
 
+    name = "Mauro"
+    surname = "Quaglia"
 
-
-describe('execute') {}
+    expect(
+      obj.send("#{name.downcase}_#{surname.downcase}")
+    ).to eq('Mauro')
+  end
+end

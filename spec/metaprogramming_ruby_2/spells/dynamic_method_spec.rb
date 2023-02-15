@@ -1,11 +1,20 @@
 # Posso definire un metodo dinamicamente.
-# In questo modo definisco a runtime il nome del metodo.
-class MyClass
-  define_method(:mauro) do |my_arg|
-    my_arg * 3
+# Questo permette di definire un metodo a runtime, cosa che è impossibile nei linguaggi statici.
+# Occhio che a runtime il metodo va inevitabilmente a finire nella singleton class.
+
+class DynamicMethod
+  [:active, :inactive].each do |method|
+    define_method "#{method}?" do
+      method == :active
+    end
   end
 end
 
-puts MyClass.new.mauro(10)
+describe('Spell: Dynamic Method') do
+  it 'should create method dynamically' do
+    obj = DynamicMethod.new
 
-describe('execute') {}
+    expect(obj.active?).to be_truthy
+    expect(obj.inactive?).to be_falsey
+  end
+end

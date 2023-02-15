@@ -36,7 +36,7 @@ describe(PersonEquality) do
       expect(mauro_person_1 == mauro_person_2).to be_truthy
     end
 
-    it 'should be the same person (and different type of class)' do
+    it 'should be the same person (but different type of class)' do
       mauro_person_1 = PersonEquality.new('Mauro', 'Quaglia', 43)
       mauro_person_2 = OpenStruct.new(name: 'Mauro', surname: 'Quaglia', age: 43)
 
@@ -52,7 +52,6 @@ describe(PersonEquality) do
   end
 
   # Stessa classe e stessi valori.
-  # Dovrei implementare anche il metodo .hash.
   describe '#.eql?' do
     it 'should be the same person (and same type of class)' do
       mauro_person_1 = PersonEquality.new('Mauro', 'Quaglia', 43)
@@ -73,6 +72,17 @@ describe(PersonEquality) do
       mauro_person_2 = PersonEquality.new('Mauro', 'Quaglia', 34)
 
       expect(mauro_person_1.eql?(mauro_person_2)).to be_falsey
+    end
+  end
+
+  describe '#.hash' do
+    it 'should be in hash' do
+      mauro = PersonEquality.new('Mauro', 'Quaglia', 43)
+      my_hash = {
+        mauro => 'The Ruby Programmer'
+      }
+
+      expect(my_hash[mauro]).to eq('The Ruby Programmer')
     end
   end
 
