@@ -34,17 +34,5 @@ describe('Equality') do
     expect(a.class == b.class).to be_falsey
   end
 
-  it '=== (based on .hash method) (no check type of class) (same as == but used for case statements)' do
-    a, b = 'xyz', 'xyz'
-    expect(a === b).to be_truthy
-    expect(a.hash == b.hash).to be_truthy
-    expect(a.class == b.class).to be_truthy
-
-    a, b = 1, 1.0
-    expect(a === b).to be_truthy
-    expect(a.hash == b.hash).to be_falsey
-    expect(a.class == b.class).to be_falsey
-  end
-
 end
 

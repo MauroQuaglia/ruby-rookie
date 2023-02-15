@@ -5,6 +5,11 @@
    * `MyClass` = `Class.new`
 * Questo significa anche che i metodi di una classe (`MyClass`) sono i metodi di istanza di `Class`.
 * Ricordiamo poi che `Class.superclass` = `Module` che significa che ogni classe è un modulo con in più qualche metodo di istanza come `new`, `supeclass`. Ruby tratta classi e moduli come la stessa cosa, l'unico motivo per cui esistono entrambi è per chiarezza: usiamo un modulo quando vogliamo aggiungere qualcosa e usiamo una classe quando vogliamo fare delle istande o ereditare. Questo rende più chiare le nostre intenzioni. I nomi delle classi sono delle `costanti`.
+* Module.constants ritorn tutte le costanti nel current scope, quindi anche tutti i nomi delle classi.
+
+# load vs require
+* load(t/f) esegue il file mentre require lo carica e basta. load -> esegue codice; require -> importa librerie.
+* load può sporcare il current scope con le sue costanti, vedere le documentazione del metodso.
 
 ## Costanti
 * Tutte le costanti (ciò che inizia per lettera maiuscola) sono organizzate ad albero come un file system, dove i moduli e le classi sono le directory e i file le costanti.
@@ -15,6 +20,7 @@
 
 ## self
 * `self` rappresenta sempre il riferimento all'oggetto  corrente
+* Se il receiver non è esplicito, allora il receiver è self.
 
 ## Simboli o Stringhe
 * I simboli sono usati di solito per i nomi delle cose, per esempio dei metodi, dato che non ci aspettiamo che il nome di un metodo cambi, ed essendo un simbolo immutabile.
@@ -30,3 +36,7 @@
 * Valutando stringhe di test ci possono essere problemi di sicurezza, tipo Code injection.
 * Meglio limitare l'uso di eval a cioè che scrivo io piuttosto che a cioè che può scrivere chiunque.
 * In ogni caso, si sconsiglia sempre l'uso di eval in favore di altre soluzioni.
+
+
+TODO
+Sui vari spell magari mettere le parole chiave in cima.

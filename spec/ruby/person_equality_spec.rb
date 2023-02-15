@@ -85,5 +85,4 @@ describe(PersonEquality) do
       expect(my_hash[mauro]).to eq('The Ruby Programmer')
     end
   end
-
 end

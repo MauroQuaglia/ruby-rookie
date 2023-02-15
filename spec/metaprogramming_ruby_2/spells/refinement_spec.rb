@@ -1,5 +1,6 @@
 # Il refinement non è attivo di default, per attivarlo serve lo using.
 # Da quel momento in poi e fino alla fine del file o del modulo in cui è usato il refinement, il refinement è attivo.
+# Tuttavia il Refinement potrebbe non essere ancora una feature di Ruby stabile per cui ci potrebbero essere casi molto particolari in cui si comporta in modo controintuitivo.
 
 # Il refinement ha la precedenza su qualsiasi cosa (moduli, prepend, ...) all'interno di stringa.
 module MyRefinement
