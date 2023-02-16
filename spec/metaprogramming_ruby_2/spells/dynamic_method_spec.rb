@@ -18,3 +18,22 @@ describe('Spell: Dynamic Method') do
     expect(obj.inactive?).to be_falsey
   end
 end
+
+# Altro esempio
+class DynamicMethod2
+
+  def my_method
+    puts 'Di qui NON PASSO alla definizione di classe'
+    puts 'Di qui PASSO solo quando chiamo il metodo'
+  end
+
+  def self.create_method(name)
+    define_method(name) do
+      "Ho definito #{name}"
+    end
+  end
+
+  puts 'Di qui PASSO alla definizione di classe!'
+  create_method(:mauro) # Quando chiamo create_method self è la classe per cui il metodo create_method deve essere di classe.
+  create_method(:quaglia)
+end

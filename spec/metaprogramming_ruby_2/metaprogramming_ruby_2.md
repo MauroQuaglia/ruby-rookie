@@ -37,6 +37,8 @@
 * Meglio limitare l'uso di eval a cioè che scrivo io piuttosto che a cioè che può scrivere chiunque.
 * In ogni caso, si sconsiglia sempre l'uso di eval in favore di altre soluzioni.
 
+# Array
+* Se passo un blocco ad Array#grep, questo blocco viene chiamato per ogni elemento che matcha la regula expression, passandogli le $n come variabili
 
 TODO
 Sui vari spell magari mettere le parole chiave in cima.
