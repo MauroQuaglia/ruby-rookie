@@ -5,6 +5,7 @@ class MethodMissing
     'My x Method!'
   end
 
+  # Se voglio esplicitare il blocco l'altra possibulità è di definirlo con la signature: method_missing(symbol, *args, &block)
   def method_missing(symbol, *args)
     # 1. Non creare più method_missing del necessario, perché potrei intercettare anche cose che non voglio.
     [:y, :z, :display].include?(symbol) || super # In questo caso :h chiama il method_missing originale che da l'eccezione NoMethodError.
@@ -14,8 +15,9 @@ class MethodMissing
 
   # 2. E' bene fare l'override anche di questo.
   # Il metodo respond_to? chiama anche il respond_to_missing? questo serve per capire cosa sto creando con il method_missing.
+  # Un po'come dire ghost_method?
   def respond_to_missing?(symbol, include_private = false)
-    [:y, :z, :display].include?(symbol) || super
+    [:y, :z, :display].include?(symbol) || super # super è il respond_to_missing? di Object che torna sempre false.
   end
 
   # 3. Attenzione. Se voglio intercettare anche metodi che sono già definiti in Object devo prima toglierli dalla mia classe MethodMissing.
