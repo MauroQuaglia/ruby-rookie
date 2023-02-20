@@ -5,11 +5,15 @@
 describe('Block, Lambda and Proc: return 2') do
 
   it 'proc' do
-    expect(find_first_even_block([1, 1, 2])).to eq(2)
+    expect(
+      find_first_even_block([1, 1, 2])
+    ).to eq(2)
   end
 
   it 'lambda' do
-    expect(find_first_even_lambda([1, 1, 2])).to be_nil
+    expect(
+      find_first_even_lambda([1, 1, 2])
+    ).to be_nil
   end
 
   private

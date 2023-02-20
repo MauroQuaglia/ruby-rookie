@@ -38,7 +38,7 @@ lambda {
   Kernel.define_method(:inc_a) { a += 1 }
   Kernel.define_method(:dec_a) { a -= 1 }
   Kernel.define_method(:my_a) { a }
-}.call
+}.call # Azione!
 
 describe('Spell: Shared Scope') do
   it 'should increment' do
