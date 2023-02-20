@@ -1,40 +1,33 @@
 # Le keyword che agiscono da scope gate sono: class, module, def.
-# Sono delle barriere per il binding class|end, module|end, def|end. Qui dentro il binding è isolato.
-# Il metodo Kernel#local_variables permette di vedere il binding corrente.
+# Sono delle barriere di scope: class|end, module|end, def|end. Qui dentro il binding è isolato.
 
 v1 = 1
-puts local_variables
-
-class MyClass
+class ScopeGate1
   v2 = 2
-  puts local_variables
-
   def my_method
     v3 = 3
-    puts local_variables
   end
-
-  puts local_variables
 end
 
-obj = MyClass.new
-obj.my_method
-obj.my_method
+# Nel caso precedente vengono aperti due scope:
+# globale: dove ci sta v1 e la definizione di classe ScopeGate.
+# definizione di classe ScopeGate: dove ci sta v2
+# Il terzo scope viene aperto solo alla chiamata del metodo e ci stara la variabile v3.
+# Da notare che se chiamo due volte il metodo my_method verrà aperto un nuovo scope.
 
-puts local_variables
-
-puts '--------------------------'
-
-class MyClass2
+v1 = 1
+class ScopeGate2
   # puts v1 Non può funzionare perché class funziona da barriera
-
   def my_method
-    # puts v1 Meno che meno, qui abbiamo una doppia barriera class e def.
+    v1 # Idem qui, dove inoltre c'è anche def.
   end
 end
-MyClass2.new.my_method
-
 # L'unico modo per far funzionare il caso precedente è quello di appiattire lo scope. Vedere lo spell Flat Scope.
 
-describe('execute') do
+describe('Spell: Scope Gate') do
+  it 'should not call v1' do
+    expect {
+      ScopeGate2.new.my_method
+    }.to raise_exception(NameError)
+  end
 end

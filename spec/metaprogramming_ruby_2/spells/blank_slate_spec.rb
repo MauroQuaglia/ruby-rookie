@@ -1,32 +1,65 @@
-# Anche se non sembra, ho già molti metodi in MyClass1, quelli ereditati.
+# Anche se non sembra, ho già molti metodi in BlankSlate1, quelli ereditati.
 # Una classe del genere può essere problematica quando si usa il method_missing nel caso si voglia intercettare dei metodi che in realtà sono già definiti nella classe base.
-class MyClass1
+class BlankSlate1
+  def my_method
+    'Mauro'
+  end
 end
-puts "Metodi che ho definito: #{MyClass1.instance_methods(false).count} - Metodi ereditati: #{MyClass1.instance_methods(true).count}"
+
+describe('Spell: Blank Slate') do
+  it 'more methods' do
+    expect(BlankSlate1.instance_methods(false).count).to eq(1) # Metodi che ho definito
+    expect(BlankSlate1.instance_methods(true).count).to eq(70) # Metodi totali
+  end
+end
 
 # Questo è un Blank Slate, un ambiente pulito con un numero minimale di metodi.
-class MyClass2 < BasicObject
+class BlankSlate2 < BasicObject
+  def my_method
+    'Mauro'
+  end
 end
-puts "Metodi che ho definito: #{MyClass2.instance_methods(false).count} - Metodi ereditati: #{MyClass2.instance_methods(true).count}"
 
-instance_methods = MyClass2.instance_methods(true)
-puts instance_methods.include?(:instance_exec)
+describe('Spell: Blank Slate') do
+  it 'less methods' do
+    expect(BlankSlate2.instance_methods(false).count).to eq(1) # Metodi che ho definito
+    expect(BlankSlate2.instance_methods(true).count).to eq(19) # Metodi totali
+  end
+
+  it 'instance_exec method' do
+    expect(
+      BlankSlate2.instance_methods(true).include?(:instance_exec)
+    ).to be_truthy
+  end
+end
 
 # Posso toglierne altri, svuotando il più possibile... con attenzione.
 # I metodi con __xxx___ sono riservati di Ruby e non devono mai essere toccati.
-# Questo è un Blank Slate, un ambiente pulito con un numero minimale di metodi.
-class MyClass3 < BasicObject
-  # Uso undef_method perché lo tolgo dalla classe base, altrimenti anche il remove_method che lo toglie solo da MyClass3 potrebbe andare bene.
-  undef_method(:instance_exec)
-end
-puts "Metodi che ho definito: #{MyClass3.instance_methods(false).count} - Metodi ereditati: #{MyClass3.instance_methods(true).count}"
+# Questo è un altro Blank Slate, un ambiente pulito con un numero minimale di metodi, dove ho tolto pure l'instance_exec.
 
-instance_methods = MyClass3.instance_methods(true)
-puts instance_methods.include?(:instance_exec)
+class BlankSlate3 < BasicObject
+  # Posso usare undef_method (lo tolgo dalla classe e dalle varie classi ereditate)
+  # Posso usare remove_method (lo tolgo solo dalla classe)
+  undef_method(:instance_exec)
+
+  def my_method
+    'Mauro'
+  end
+end
+
+describe('Spell: Blank Slate') do
+  it 'less methods' do
+    expect(BlankSlate3.instance_methods(false).count).to eq(1) # Metodi che ho definito
+    expect(BlankSlate3.instance_methods(true).count).to eq(18) # Metodi totali
+  end
+
+  it 'instance_exec method' do
+    expect(
+      BlankSlate3.instance_methods(true).include?(:instance_exec)
+    ).to be_falsey
+  end
+end
 
 # Osservazione
 # Se uso BasicObject come BlankSlate posso togliere anche una eventuale implementazione di respond_to_missing? in quanto in BasicObject
 # non è neanche definito il respond_to? che chiamerebbe il respond_to_missing?
-
-describe('execute') do
-end
