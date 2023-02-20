@@ -1,34 +1,48 @@
-# Possiamo prima riguardare l'esempio di blocks_are_closures e poi questo.
+# intance_eval valuta un blocco nel contesto di un oggetto.
+# Infatti il self all'interno del blocco passato all'instance_eval è l'oggetto su cui è chiamato instance_eval.
+# Un blocco normalmente non vede le variabili dell'oggetto in cui è iniettato, ma con instance_eval sì!
+# Inoltre il blocco in quanto tale può sempre vedere il suo binding di quando è stato definito
 
-class Second
+class InstanceEval
+  def initialize
+    @var = '@variable'
+  end
+
   def execute
     yield
   end
 end
 
-# Il punto chiave è che l'instance_eval cambia il ruolo giocato da self
-class Third
+class InstanceEvalTest
   def mq_test_1
-    v = 'test_1'
-    Second.new.instance_eval do
-      "#{self} | #{v}" #<Second:0x00007f4159078540> | test_1
+    v = 'mq_test_1'
+
+    # Il punto chiave è che l'instance_eval cambia il ruolo giocato da self
+    InstanceEval.new.instance_eval do
+      "#{self.class.name} | #{v} | #{@var}" #<InstanceEval> | mq_test_1 | @var
     end
-    # self=Second, l'instance_eval cambia il ruolo del self nel blocco che diventa quello del ricevente.
-    # Il blocco può ancora vedere le variabili del contesto corrente.
   end
 
   def mq_test_2
-    v = 'test_2'
-    Second.new.execute do
-      "#{self} | #{v}" #<Third:0x00007f6934460498> | test_2
+    v = 'mq_test_2'
+
+    # Qui dove non uso instance_eval cambia tutto. Il self è la classe corrente e non ho accesso a @var
+    InstanceEval.new.execute do
+      "#{self.class.name} | #{v} | #{@var}" #<InstanceEvalTest> | mq_test_2 |
     end
-    # self=Third, il blocco si porta a spasso il contesto in cui è definito.
-    # Il blocco vede le variabili del contesto corrente.
   end
 end
 
-puts Third.new.mq_test_1
-puts Third.new.mq_test_2
+describe('Instance Eval') do
+  it 'instance eval' do
+    expect(
+      InstanceEvalTest.new.mq_test_1
+    ).to eq('InstanceEval | mq_test_1 | @variable')
+  end
 
-describe('execute') do
+  it 'no instance eval' do
+    expect(
+      InstanceEvalTest.new.mq_test_2
+    ).to eq('InstanceEvalTest | mq_test_2 | ')
+  end
 end

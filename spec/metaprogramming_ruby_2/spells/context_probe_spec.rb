@@ -1,23 +1,31 @@
-# Posso chiamare il blocco che passo all'instance_eval un "Context Probe", cioè una sorta di sonda che posso immergere nel contesto di un oggetto.
-# Ricordiamo che il self nell'instance_eval è quello del ricevente.
+# Posso chiamare il blocco che passo all'instance_eval un "Context Probe",
+# cioè una sorta di sonda che posso immergere nel contesto di un oggetto.
+# Vedere /blocks/instance_eval_spec.rb per ricevere l'illuminazione.
 
-class MyClass
-  attr_reader(:v)
+class ContextProbe
+  # Solo reader
+  attr_reader :v
 
   def initialize
     @v = 1
   end
 end
 
-obj = MyClass.new
+describe('Spell: Context Probe') do
+  it 'instance eval spell' do
+    my_var = 100
+    obj = ContextProbe.new
+    result = obj.instance_eval { "#{self.class.name} | #{@v} | #{my_var}" }
 
-# Inietto un blocco di codice che ha accesso a tutto di obj e che può fare cose, tra cui modificare variabili.
-obj.instance_eval do
-  puts "#{self} | #{@v}" # <MyClass:0x00007f9ac80e6bd0> | 1
-  @v += 1
-end
+    expect(result).to eq('ContextProbe | 1 | 100')
+  end
 
-puts obj.v
+  it 'modify receiver object' do
+    obj = ContextProbe.new
+    expect(obj.v).to eq(1)
 
-describe('execute') do
+    # Non mi serve il writer, da "dentro" la posso cambiare. In questo caso self è l'oggetto corrente.
+    obj.instance_eval { @v = 100 }
+    expect(obj.v).to eq(100)
+  end
 end
