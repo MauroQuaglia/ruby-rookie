@@ -1,15 +1,13 @@
 # I Callable object sono: blocchi, proc, lambda, metodi.
+# Li posso creare, memorizzare in qualche variabile e poi chiamare a piacimento.
 
-callable_add = Proc.new { |x| x + 1 } # Creo un oggetto, ma lo chiamo dopo, quando ne ho necessità.
-puts callable_add.call(1) # deferred evaluation
+describe('Spell: Deferred Evaluation') do
+  it 'execute after' do
+    # Creo un oggetto, ma lo chiamo dopo, quando ne ho necessità.
+    callable_add = Proc.new { |x| x + 1 }
 
-# La & permette di passare da un blocco a un oggetto (proc o lambda) e viceversa
-def callable(x, &block)
-  a = block # Anche qua, lo piazzo in una variabile e lo uso all'occorrenza.
-  puts a.class
-end
-
-callable(4) { 'ciao' }
-
-describe('execute') do
+    expect(
+      callable_add.call(1)
+    ).to eq(2)
+  end
 end

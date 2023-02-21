@@ -1,4 +1,0 @@
-clean room
-deferred evaluation
-
-puts Object.constants.inspect

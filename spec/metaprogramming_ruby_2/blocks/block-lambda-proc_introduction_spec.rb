@@ -5,9 +5,14 @@
 
 describe('Block, Lambda and Proc') do
 
-  it 'proc and lambda' do
+  it 'proc and lambda 1' do
     expect(Proc.new {}.class).to eq(Proc)
     expect(lambda {}.class).to eq(Proc)
+  end
+
+  it 'proc and lambda 2' do
+    expect(Proc.new {}.lambda?).to be_falsey
+    expect(lambda {}.lambda?).to be_truthy
   end
 
   it 'block' do

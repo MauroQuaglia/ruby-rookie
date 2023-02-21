@@ -11,6 +11,8 @@ describe('Block, Lambda and Proc') do
     # la PROC non si arrabbia sul numero di parametri passati.
     # proc o Proc.new
     proc = proc { |x| "Hello #{x}" }
+    expect(proc.arity).to eq(1)
+
     expect(
       proc_params(proc)
     ).to eq('Hello Block')
@@ -19,6 +21,8 @@ describe('Block, Lambda and Proc') do
   it 'lambda' do
     # la LAMBDA si arrabbia sul numero di parametri passati.
     lambda = lambda { |x| "Hello #{x}" }
+    expect(lambda.arity).to eq(1)
+
     expect {
       lambda_params(lambda)
     }.to raise_error(ArgumentError)

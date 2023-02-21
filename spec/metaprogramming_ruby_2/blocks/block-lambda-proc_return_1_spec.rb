@@ -1,14 +1,14 @@
 describe('Block, Lambda and Proc: return 1') do
 
   it 'block' do
-    # Il return esce dal contesto dove il blocco è definito ossia dal test.
+    # Il return esce dallo scope di dove il blocco è definito ossia dal test.
     expect {
       block_params { return "Hello" }
     }.to raise_error(LocalJumpError)
   end
 
   it 'proc' do
-    # Il return esce dal contesto dove la Proc è definita ossia dal test.
+    # Il return esce dallo scope di dove la Proc è definita ossia dal test.
     proc = Proc.new { return "Hello" }
     expect(proc.arity).to eq(0) # Signature con 0 parametri
     expect {
