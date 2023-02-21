@@ -1,6 +1,7 @@
-class Second
+# instance_exec fa la stessa cosa di instance_eval, ma permette di passare un valore al blocco.
+class InstanceExec
   def initialize
-    @x = 1
+    @x = 'ics'
   end
 
   def execute
@@ -8,40 +9,38 @@ class Second
   end
 end
 
-# Partiamo con un esempio di instance_eval
-class Third
-  def mq_test_local_variable
-    v = 'local'
-    Second.new.instance_eval do
-      "#{self} | Third local variable: #{v} | Second instance variable: #{@x}"
-      # <Second:0x00007f5213043eb0> | Third local variable: local | Second instance variable: 1
-    end
+class InstanceExecTest
+  def initialize
+    @y = 'ipsilon'
   end
 
-  def mq_test_instance_variable
-    @v = 'instance'
-    Second.new.instance_eval do
-      "#{self} | Third instance variable: #{@v} | Second instance variable: #{@x}"
-      #<Second:0x00007f3fae0c0ef0> | Third instance variable:  | Second instance variable: 1
-      # Giusto! Perché le variabili di istanza dipendono da self! E qui il ruolo di self è giocato da Second e non da Third.
-    end
-  end
-
-  # L'instance_exec permette di pasare anche un argomento al blocco
-  # In questo modo la mia variabile di istanza è valorizzata nel blocco
+  # L'instance_exec permette di pasare anche un argomento al blocco.
   def mq_test_instance_exec
-    @v = 'instance'
-    Second.new.instance_exec(@v) do |my_var|
-      "#{self} | Third instance variable: #{my_var} | Second instance variable: #{@x}"
-      # <Second:0x00007f7c3cfe86d8> | Third instance variable: instance | Second instance variable: 1
-      # Giusto! Perché le variabili di istanza dipendono da self! E qui il ruolo di self è giocato da Second e non da Third.
+    InstanceExec.new.instance_exec(@y) do |y|
+      "#{self.class.name} | InstanceExecTest variable: #{y} | InstanceExec variable: #{@x}"
+    end
+  end
+
+  # Dentro all'instance_eval il ruolo di self è giocato da InstanceExec,
+  # per cui le variabili @... sono quelle dell'istanza di InstanceExec, e li @y non esiste.
+  def mq_test_instance_eval
+    InstanceExec.new.instance_eval do
+      "#{self.class.name} | InstanceExecTest variable: #{@y} | InstanceExec variable: #{@x}"
     end
   end
 end
 
-puts Third.new.mq_test_local_variable
-puts Third.new.mq_test_instance_variable
-puts Third.new.mq_test_instance_exec
+describe('instance_exec') do
+  it 'variable depends of self (instance_exec)' do
+    # Giusto! Perché le variabili di istanza dipendono da self!
+    # E qui il ruolo di self è giocato da InstanceExec e non da InstanceExecTest.
+    expect(InstanceExecTest.new.mq_test_instance_exec).
+      to eq('InstanceExec | InstanceExecTest variable: ipsilon | InstanceExec variable: ics')
+  end
 
-describe('execute') do
+  it 'variable depends of self (instance_eval)' do
+    # Giusto! Perché le variabili di istanza dipendono da self!
+    expect(InstanceExecTest.new.mq_test_instance_eval).
+      to eq('InstanceExec | InstanceExecTest variable:  | InstanceExec variable: ics')
+  end
 end

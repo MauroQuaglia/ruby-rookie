@@ -1,24 +1,25 @@
 # Serve per avere un ambiente pulito in cui valutare un blocco.
 # Posso anche creare un ambiente ad-hoc stando sempre attento ad un eventuale conflitto tra nomi.
-# Metto a disposizione un ambiente con dei metodi che il blocco può chiamare
+# Metto a disposizione un ambiente con dei metodi che il blocco può chiamare.
+# A volte come Clean Room può andare bene anche un BasicObject.new
 
 class CleanRoom
   def temperature?
-    @t > 5 ? "OK" : "KO"
+    @temp > 5 ? "OK" : "KO"
   end
 end
 
-clean_room = CleanRoom.new
-clean_room.instance_eval do
-  @t = 10
-  puts temperature?
-end
+describe('Spell: Clean Room') do
 
-# In generale, per cose semplici un BasicObject va sempre bene.
-basic = BasicObject.new
-basic.instance_eval do
-  5 * 5
-end
+  it 'should evaluate a block in a clean room' do
+    # Questa è la stanza pulita, dove metto a disposizione alcune cose, per valutare un blocco.
+    clean_room = CleanRoom.new
+    result = clean_room.instance_eval do
+      @temp = 10
+      temperature?
+    end
 
-describe('execute') do
+    expect(result).to eq('OK')
+  end
+
 end
