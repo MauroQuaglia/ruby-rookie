@@ -2,6 +2,10 @@
 # Infatti il self all'interno del blocco passato all'instance_eval è l'oggetto su cui è chiamato instance_eval.
 # Un blocco normalmente non vede le variabili dell'oggetto in cui è iniettato, ma con instance_eval sì!
 # Inoltre il blocco in quanto tale può sempre vedere il suo binding di quando è stato definito
+# Vari scritture sono possibili:
+# instance_eval do ... end
+# instance_eval {...}
+# instance_eval &block
 
 class InstanceEval
   def initialize

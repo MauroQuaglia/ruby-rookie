@@ -1,6 +1,6 @@
 # I metodi si possono "staccare" e "appicciare" da una classe a un'altra!
 # Se li pesco da una classe li posso appiccicare a un oggetto dello stesso tipo.
-# Se li pesco da una modulo li posso appiccicare dove voglio.
+# Se li pesco da una modulo li posso appiccicare dove voglio... anche con un define_method
 # Non è una feature molto usata e nel tempo è cambiata, nel caso guardarci.
 # Sono tutte cose che servono per le performance e altre cose esoteriche.
 
@@ -46,5 +46,20 @@ describe('binding') do
 
     obj = BindTest.new(3, nil)
     expect(unbound_method.bind(obj).call('ciao')).to eq('ciaociaociao')
+  end
+end
+
+module BindTestModule
+  def my_method
+    100
+  end
+end
+
+describe('binding') do
+  it 'bind unbound method' do
+    unbound_method = BindTestModule.instance_method(:my_method)
+    String.define_method(:exotic_method, unbound_method)
+
+    expect('xxx'.exotic_method).to eq(100)
   end
 end

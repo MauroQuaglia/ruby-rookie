@@ -21,6 +21,8 @@
 ## self
 * `self` rappresenta sempre il riferimento all'oggetto  corrente
 * Se il receiver non è esplicito, allora il receiver è self.
+* Ovunque siamo c'è sempre il current_object e la current_class.
+* Esempio: main (current_object) | Object (current_class)
 
 ## Simboli o Stringhe
 * I simboli sono usati di solito per i nomi delle cose, per esempio dei metodi, dato che non ci aspettiamo che il nome di un metodo cambi, ed essendo un simbolo immutabile.
