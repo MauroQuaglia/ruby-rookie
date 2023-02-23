@@ -5,16 +5,16 @@ def add_method_to_class(a_class)
   # Di fatto class_eval riapre la classe ed è utile quando si vuole riaprire una classe di cui non si conosce il nome a priori.
   # La riapre anche in maniera flessibile perché non usando la parola class (scope-gate) di fatto è un flat-scope con possibilità di visione a variabili nel contesto corrente.
   a_class.class_eval do
+    # Ovviamente lo mette nella singleton class
     def my_abc_method
       'ABC'
     end
   end
 end
 
-# class_eval e instance_eval sono MOLTO diverse
+# class_eval e instance_eval sono MOLTO diverse e le usiamo per scopi differenti
 # instance_eval -> lavora solo sull'istanza corrente
-# class_eval -> lavora suul'istanza corrente (della classe, che ricordiamo è un oggetto) e sulla classe.
-
+# class_eval -> lavoriamo sulla classe
 describe 'class_eval' do
   it 'example' do
     add_method_to_class(String)
@@ -24,3 +24,4 @@ describe 'class_eval' do
     expect(1.my_abc_method).to eq('ABC')
   end
 end
+

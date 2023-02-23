@@ -1,6 +1,9 @@
+# Tutte le varibili di istanza appartengono a self (current object).
 class ClassInstanceVariable1
-  @my_var = 1 # Variabile di istanza di Class. D'altronde ClassInstanceVariable1 = Class.new
-              # In questo caso starà nell'Eigen class di Class.new altrimenti qualunque altra classe la vedrebbe.
+  # Qui il self è la ClassInstanceVariable1
+  # Variabile di istanza dell'oggetto ClassInstanceVariable1 (Ricordiamo: La classe è un oggetto)
+  # E' accessibile solo da questo tipo di classe e da nient'altro.
+  @my_var = 1
 
   def self.read
     # E' accessibile solo dalla classe stessa, non da metodi di istanza della classe ne da classi derivate.
@@ -8,7 +11,9 @@ class ClassInstanceVariable1
   end
 
   def write
-    @my_var = 2 # Variabile di istanza di ClassInstanceVariable1. D'altronde obj = ClassInstanceVariable1.new
+    # Qui il self è l'oggetto di classe ClassInstanceVariable1.
+    # Variabile di istanza dell'oggetto di classe ClassInstanceVariable1
+    @my_var = 2
   end
 
   def read
@@ -39,7 +44,7 @@ describe('Spell: Class Instance Variable') do
 end
 
 # ATTENZIONE! le variabili di classe (@@) sono diverse
-
+# Non appartengono alla classe ma alla gerarchia di classe.
 class ClassVariable1
   @@my_var = 1
 

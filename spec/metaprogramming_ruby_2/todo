@@ -1,4 +1,3 @@
-class_eval
 class instance variable
 singleton method
 class macro

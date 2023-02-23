@@ -1,5 +1,14 @@
+# Guardare lo schema del lookup.
+# Il metodo my_1 vive in CurrentClass, perché è li che vengono cercati i metodi.
+# Quando chiamo my_1, questo viene cercato nella CurrentClass, a questo punto viene definito il metodo my_2, che
+# per forza starà nella #CurrentClass (singleton)
+# Per cui quando poi viene fatta una istanza nuova di CurrentClass, vengono messe insieme i metodi della CurrentClass e della #CurrentClass
+# e per questo il nuovo oggetto vedrà anche my_2
+
+# Questo esempio rappresenta un class_eval casereccio.
 class CurrentClass
   def my_1
+    # In questo punto la current_class è CurrentClass, per cui poi il def my_2 definirà il metodo nella current_class corrente.
     def my_2
     end
   end

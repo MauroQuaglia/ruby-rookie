@@ -23,6 +23,7 @@
 * Se il receiver non è esplicito, allora il receiver è self.
 * Ovunque siamo c'è sempre il current_object e la current_class.
 * Esempio: main (current_object) | Object (current_class)
+* Per capire dove sono e quali metodi ho a disposizione e quali variabili vedo il trucco è chiedersi sempre chi è self.
 
 ## Simboli o Stringhe
 * I simboli sono usati di solito per i nomi delle cose, per esempio dei metodi, dato che non ci aspettiamo che il nome di un metodo cambi, ed essendo un simbolo immutabile.
