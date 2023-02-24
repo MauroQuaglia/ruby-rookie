@@ -9,9 +9,11 @@ describe('Spell: Singleton Method') do
       "Chapter 1: #{self.capitalize}"
     end
     expect(my_string1.title).to eq("Chapter 1: Mauro")
+    expect(my_string1.methods.grep(/title/)).to eq([:title])
+    expect(my_string1.singleton_methods).to eq([:title])
 
     # Secondo modo di aggiungere un metodo alla singleton class.
-    # I rubysti preferiscono questo perché rende più esplicito l'esistenza di un'altea classe: la singleton class
+    # I rubysti preferiscono questo perché rende più esplicito l'esistenza di un'altra classe: la singleton class
     my_string2 = 'mauro'
     class << my_string2 # la singleton class
       def title
@@ -85,6 +87,6 @@ describe('Spell: Singleton Method') do
     expect(SingletonMethod3.method_2).to eq('Mauro method 2')
     expect(SingletonMethod3.method_3).to eq('Mauro method 3')
 
-    expect(SingletonMethod3.singleton_class.instance_methods(false)).to eq([:method_3, :method_1, :method_2])
+    expect(SingletonMethod3.singleton_class.instance_methods(false)).to match_array([:method_3, :method_1, :method_2])
   end
 end

@@ -1,7 +1,7 @@
 puts self # main => current_object
 puts self.class # Object => current_class
 
-@@v = 1
+#@@v = 1
 
 # Sta nell'istanza corrente del main.
 def my_object_method

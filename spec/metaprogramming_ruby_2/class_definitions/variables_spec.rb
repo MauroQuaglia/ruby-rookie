@@ -12,17 +12,28 @@ $var_1 = 'var 1'
 # Questo era un "problema" perché ogni classe, derivando implicitamente da Object se la ritrovava come variabile di classe!
 # @@var_3 = 'var 3'
 
-# Variabile locale...ma non mi è chiarissimo dove la mette
+# Variabile locale...ma non mi è chiarissimo dove la mette se definita nel main
 var_4 = 'var 4'
 
 # Poi ci sarebbe da vedere come tutti questi 4 casi funzionano della definizione di classe e nel metodo ma pace.
-# Era solo per elencare i vari ti pi di variabili che posso definire.
+# Era solo per elencare i vari tipi di variabili che posso definire.
 
 # L'idea di base era analizzare tutte le varie casistiche.
 $var_1 = 'var 1' # globali
 @var_2 = 'var 2' # di istanza
 #@@var_3 = 'var 3' # di  classe
 var_4 = 'var 4' # locale
+
+my_main = self
+describe('Variable') do
+  it 'type of variable' do
+    expect(defined?($var_1)).to eq('global-variable')
+  end
+
+  it 'instance variables' do
+    expect(my_main.instance_variables).to eq([:@var_2])
+  end
+end
 
 class Variable
   $var_1 = 'var 1'
@@ -44,5 +55,3 @@ class Variable
     var_4 = 'var 4'
   end
 end
-
-describe('Variable') {}
