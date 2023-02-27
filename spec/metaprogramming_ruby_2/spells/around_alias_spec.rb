@@ -4,7 +4,7 @@
 # 3. Fare un wrap del metodo originale
 
 # Osservazione
-# Aggiungendo metodi può essere il caso di mettenre alcuni (quelli vecchi) come private.
+# Aggiungendo metodi può essere il caso di metterne alcuni (quelli vecchi) come private.
 # Tanto basta mettere il nome del metodo private.
 # Nel caso 2 e 3 l'alias agisce come una forma di monkeypatch
 # Ci sono anche metodi diversi per il caso 2 e 3 vedi per esempio gli spell: refinement wrapper e prepend wrapper.
@@ -65,5 +65,4 @@ describe('Spell: Around Alias') do
     obj = AroundAlias3.new
     expect(obj.mauro).to eq('Mauro Quaglia')
   end
-
 end

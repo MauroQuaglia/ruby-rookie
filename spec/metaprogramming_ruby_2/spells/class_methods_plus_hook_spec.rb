@@ -9,6 +9,7 @@ describe('Spell: Class Methods Plus Hook') do
       end
     end
 
+    # Questo è l'hook method (included)
     def self.included(klass)
       klass.extend MyClassMethods
     end
@@ -21,5 +22,4 @@ describe('Spell: Class Methods Plus Hook') do
   it 'should be a class method' do
     expect(ClassMethodPlusHook.my_method).to eq('Mauro!')
   end
-
 end
