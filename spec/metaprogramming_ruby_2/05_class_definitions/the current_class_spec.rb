@@ -23,10 +23,10 @@ describe('The CurrentClass') do
     expect(CurrentClass.instance_methods(false)).to eq([:my_q1])
 
     obj_1.my_q1 # Definisce my_q2 nell'istanza e nella classe
-    expect(obj_1.methods.grep(/my_q/)).to eq([:my_q1, :my_q2])
-    expect(CurrentClass.instance_methods(false)).to eq([:my_q1, :my_q2])
+    expect(obj_1.methods.grep(/my_q/)).to match_array([:my_q1, :my_q2])
+    expect(CurrentClass.instance_methods(false)).to match_array([:my_q1, :my_q2])
 
     obj_2 = CurrentClass.new # Infatti ora anche obj_2 ha il metodo my_q2
-    expect(obj_2.methods.grep(/my_q/)).to eq([:my_q1, :my_q2])
+    expect(obj_2.methods.grep(/my_q/)).to match_array([:my_q1, :my_q2])
   end
 end

@@ -96,7 +96,3 @@ RSpec.configure do |config|
   Kernel.srand config.seed
 =end
 end
-
-def break_line
-  puts('----------------------------------------------------')
-end
