@@ -16,7 +16,7 @@ describe('Spell: Class Extension') do
       end
     end
 
-    class ClassExtension # La riapro.
+    class ClassExtension1 # La riapro.
       include ClassExtensionModule1
     end
 

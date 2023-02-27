@@ -3,8 +3,12 @@
 # 2. Fare un "override" del metodo ma avere la possibilità di chiamare anche il metodo vecchio
 # 3. Fare un wrap del metodo originale
 
-# L'alias agisce come una forma di monkeypatch (caso 3)
-# Ci sono anche metodi diversi di farlo vedi per esempio gli spell: refinement wrapper e prepend wrapper.
+# Osservazione
+# Aggiungendo metodi può essere il caso di mettenre alcuni (quelli vecchi) come private.
+# Tanto basta mettere il nome del metodo private.
+# Nel caso 2 e 3 l'alias agisce come una forma di monkeypatch
+# Ci sono anche metodi diversi per il caso 2 e 3 vedi per esempio gli spell: refinement wrapper e prepend wrapper.
+# Spesso il prepended wrapper è quello più chiaro.
 describe('Spell: Around Alias') do
 
   it '1. another name for the method "mauro"' do

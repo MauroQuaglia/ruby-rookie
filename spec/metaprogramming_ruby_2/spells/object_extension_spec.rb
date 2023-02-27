@@ -1,4 +1,4 @@
-# Volgio aggiungere dei metodi di sitanza a un oggetto
+# Volgio aggiungere dei metodi di istanza a un oggetto
 describe('Spell: Object Extension') do
   it 'add instance method by module' do
     class ObjectExtension
@@ -17,6 +17,7 @@ describe('Spell: Object Extension') do
     end
 
     # Il trucco è sempre lo stesso, metto il modulo nella singleton_class di obj.
+    # I metodi (tramite lookup) vengono cercati prima nella singleton-class di obj e poi nella classe di obj.
     class << obj
       include ObjectExtensionModule
     end

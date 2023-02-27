@@ -3,6 +3,7 @@
 # super: permette di richiamare il metodo originale
 
 module PrependWrapperModule
+  # Il super chiama quello della classe in cui è incluso.
   def mauro
     "#{super} Quaglia"
   end
@@ -32,8 +33,11 @@ describe('Spell: Prepend Wrapper') do
       end
     end
 
-    # Lo cerca prima nella classe e poi nel modulo
+    # Lo cerca prima nel modulo e poi nella class
     obj = PrependWrapper2.new
     expect(obj.mauro).to eq('Mauro Quaglia')
+
+    # Ovviamente si può fare anche al volo:
+    # PrependWrapper2.class_eval { prepend PrependWrapperModule }
   end
 end

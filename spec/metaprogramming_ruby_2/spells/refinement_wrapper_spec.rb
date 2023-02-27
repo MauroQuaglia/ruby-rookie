@@ -11,6 +11,7 @@ end
 
 module RefinementWrapperModule
   refine RefinementWrapper do
+    # Override del metodo originale con chiamata (super) all'originale.
     def mauro
       "#{super} Quaglia"
     end

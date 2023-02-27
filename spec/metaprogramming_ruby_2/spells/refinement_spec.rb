@@ -6,7 +6,9 @@
 module MyRefinement
   refine(String) do
     def reverse
-      "Il reverse è #{super}" # Il super chiama il reverse originale.
+      # Il super chiama il reverse originale.
+      # Questa è una cosa interessante, ed è la base dello Spell Refinement Wrapper.
+      "Il reverse è #{super}"
     end
     # Già qui il refinement è attivo.
   end
