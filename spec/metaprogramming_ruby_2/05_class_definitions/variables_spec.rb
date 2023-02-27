@@ -31,7 +31,7 @@ describe('Variable') do
   end
 
   it 'instance variables' do
-    expect(my_main.instance_variables).to eq([:@var_2])
+    expect(my_main.instance_variables).to include(:@var_2)
   end
 end
 

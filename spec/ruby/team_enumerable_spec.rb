@@ -11,7 +11,7 @@ describe(TeamEnumerable) do
     end
 
     it '#name' do
-      expect(team.map(&:downcase)).to eq(%w[mauro stefania])
+      expect(team.map(&:upcase)).to eq(%w[MAURO STEFANIA])
     end
 
     it '#any' do

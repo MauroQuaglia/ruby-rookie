@@ -37,19 +37,19 @@ lambda {
   a = 0
   Kernel.define_method(:inc_a) { a += 1 }
   Kernel.define_method(:dec_a) { a -= 1 }
-  Kernel.define_method(:my_a) { a }
+  Kernel.define_method(:my_a_value) { a }
 }.call # Azione!
 
 describe('Spell: Shared Scope') do
   it 'should increment' do
-    expect(my_a).to eq(0)
+    expect(my_a_value).to eq(0)
     inc_a
-    expect(my_a).to eq(1)
+    expect(my_a_value).to eq(1)
   end
 
   it 'should decrement' do
-    expect(my_a).to eq(1)
+    expect(my_a_value).to eq(1)
     dec_a
-    expect(my_a).to eq(0)
+    expect(my_a_value).to eq(0)
   end
 end

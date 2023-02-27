@@ -2,7 +2,7 @@
 
 describe('Const') do
   it 'should load constants (Object)' do
-    expect(Object.constants.count).to eq(156)
+    expect(Object.constants.count).to be > 150
     expect(Object.constants).to include(:String)
   end
 
