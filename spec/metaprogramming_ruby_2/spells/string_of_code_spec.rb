@@ -1,4 +1,5 @@
 # eval permette di interpretare una riga di testo come se fosse codice
+# Le String of Code hanno accesso alle variabili clocali come i blocchi
 describe('Spell: String Of Code') do
 
   it 'evaluate string of text' do

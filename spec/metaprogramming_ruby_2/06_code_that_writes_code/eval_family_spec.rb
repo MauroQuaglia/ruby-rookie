@@ -2,6 +2,9 @@
 # Abbiamo visto che instance_eval e class_eval lavorano con i blocchi, ma in realtà possono lavorare anche con le stringhe di codice.
 # D'altronde è il lavoro di *_eval avere a che fare con stringhe di codice.
 
+# Due modalità di utilizzo da come si vede sotto:
+#  array.instance_eval {self << letter }
+#  array.instance_eval('self << letter')
 describe('Eval family') do
 
   it 'instance_eval work with string of code' do
@@ -9,19 +12,17 @@ describe('Eval family') do
     letter = 'D'
 
     # D'altronde il codice in una stringa non è molto diverso dal codice in un blocco!
-    array.instance_eval do
-      self << letter
-    end
-
+    array.instance_eval { self << letter }
     expect(array).to eq([10, 100, 1000, 'D'])
 
-    # Tuttavia se lo faccio con le stringhe questa cosa non funziona con i nuovi Ruby
-    array.instance_eval do
-      "self << 'X'"
-    end
-
-    # Infatti non ha aggiunto la lettera X.
+    # Se passo questa cosa come blocco non funziona
+    array.instance_eval { "self << letter" }
     expect(array).to eq([10, 100, 1000, 'D'])
+
+    # Se passo questa cosa come parametro di metodo funziona
+    # Le stringhe di codice hanno ancora accesso alle variabili locali
+    array.instance_eval("self << letter")
+    expect(array).to eq([10, 100, 1000, 'D', 'D'])
   end
 
 end

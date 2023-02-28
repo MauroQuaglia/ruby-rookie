@@ -13,3 +13,12 @@ describe('Spell: Code Processor') do
   end
 
 end
+
+# Il modo migliore per usare l'eval per fare un code processor è chiamarla come fa l'irb.
+# eval(statements, @binding, file, line)
+# > statements = la riga di codice ruby da interpretare
+# > @binding = il contesto dove valutare la riga di codice
+# > file = il file sorgente da dove pesca le righe di codice
+# > line = il line number
+
+# Fatto in questo modo se ci sono delle eccezioni lo stack trace risulta più chiaro.
