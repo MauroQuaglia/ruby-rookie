@@ -26,5 +26,11 @@ describe('Some useful methods') do
       singleton_methods = obj.methods(false)
       expect(singleton_methods).to eq([:my_singleton_method])
     end
+
+    it 'ancestors' do
+      expect(Class.ancestors).to eq([Class, Module, Object, Kernel, BasicObject])
+      expect(TheObjectModel.ancestors).to eq([TheObjectModel, Object, Kernel, BasicObject])
+    end
   end
+
 end

@@ -12,8 +12,7 @@ describe('Spell: Mimic Method') do
     obj.mauro = 'mauro' # mimic method
     expect(obj.mauro).to eq('mauro')
 
-    obj.mauro = ('quaglia') # scrittura equicalente con parentesi, in effetti mauro=(value) è un metodo
+    obj.mauro = ('quaglia') # scrittura equivalente con parentesi, in effetti mauro=(value) è un metodo
     expect(obj.mauro).to eq('quaglia')
   end
-
 end
