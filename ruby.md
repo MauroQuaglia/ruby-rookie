@@ -1,5 +1,8 @@
 # Ruby
-* [ruby-3.1.1](https://ruby-doc.org/core-3.1.1/)
+* Alcuni link
+  * [ruby-3.1.1](https://ruby-doc.org/core-3.1.1/)
+  * [ruby-basics](https://bparanj.gitbooks.io/ruby-basics/content/)
+  
 * In Ruby tutto (o quasi) è un oggetto quindi anche una classe è un oggetto. Per creare una classe dinamicamente si può usare:
     * `MyClass` = `Class.new`
 * Questo significa anche che i metodi a disposizione in una classe (`MyClass`) sono i metodi di istanza di `Class`.

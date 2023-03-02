@@ -41,6 +41,7 @@ describe('Spell: Hook Method 3') do
   end
 
   class HookMethod6
+    # Sto facendo override del metodo vero e proprio.
     def self.include(*modules)
       puts "Called: HookMethod6.include(#{modules})}"
       super

@@ -1,5 +1,5 @@
 # Serve per rendere più esplicita una chiamata quando devo chiamate solo un metodo
-# L'idea è di rimpiazzare la chiamata al blocco con unoshort cut
+# L'idea è di rimpiazzare la chiamata al blocco con uno shortcut
 describe('Spell: Symbol To Proc') do
 
   it 'first' do

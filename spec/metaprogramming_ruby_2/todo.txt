@@ -1,4 +1,0 @@
-nil guard
-lazy instance variable
-self yield
-symbol to proc

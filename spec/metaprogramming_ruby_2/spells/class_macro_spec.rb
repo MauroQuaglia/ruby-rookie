@@ -3,7 +3,10 @@ describe('Spell: Class Macro') do
 
   it 'attribute' do
     class ClassMacro
-      attr_writer :var # Sembra un attributo scritto così, ed è quello che si vuole. Ma in realtà è un metodo... attr_writer(:var)
+      # Sembra un attributo scritto così, ed è quello che si vuole. Ma in realtà è un metodo... attr_writer(:var)
+      # Il receiver qui è implicito self.
+      # Se metto self.attr_writer :var funziona lo stesso, non cambia nulla.
+      attr_writer :var
 
       # Di fatto sarebbe una cosa così.
 =begin
