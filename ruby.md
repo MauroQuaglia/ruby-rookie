@@ -70,3 +70,6 @@
 * `.eql?` serve se voglio usare il mio oggetto come chiave di una Hash.
 * Se implemento l' `.eql?` devo implementare anche il metodo `.hash` con la condizione che `a.eql?(b)` ==> `a.hash == b.hash`. 
 * A differenza dell'`==` l'`.eql?` fa anche il check sulla tipologia di classe.
+
+# Rails
+* Se voglio studiare in isolamento una gemma (per esempio activerecord) posso sfruttare questo comando: `gem unpack activerecord -v=7.0.4.2` e poi aprire il progetto.
