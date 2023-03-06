@@ -55,3 +55,21 @@ class Variable
     var_4 = 'var 4'
   end
 end
+
+class Variable2
+  @var2 = 'class instance variable'
+  @@var3 = 'class variable'
+
+  def initialize(var)
+    @obj_var = var
+  end
+end
+
+describe('Variable') do
+  it 'instance variable' do
+    var = Variable2.new('red')
+
+    expect(Variable2.instance_variables).to eq([:@var2]) # class instance variable
+    expect(var.instance_variables).to eq([:@obj_var]) # instance variable
+  end
+end

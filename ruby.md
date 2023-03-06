@@ -12,8 +12,9 @@
 # load vs require
 * `load(true/false)` esegue il file mentre `require` lo carica e basta. 
 * `load` -> esegue codice; 
-* `require` -> importa librerie.
+* `require` -> importa librerie e esegue il codice; Memorizza il file.
 * `load` può sporcare il current scope con le sue costanti, vedere le documentazione del metodo.
+* C'è un esempio specifico da poter guardare nel codice.
 
 ## super, superclass
 * Non confondiamo le cose. Quando chiamo `super` vado a cercare nella catena degli ancestor (che include sia classi che moduli) per cercare il nome di un metodo.
@@ -33,6 +34,7 @@
 * Ovunque siamo c'è sempre il current_object e la current_class.
 * Esempio: main (current_object) | Object (current_class)
 * Per capire dove sono e quali metodi ho a disposizione e quali variabili vedo il trucco è chiedersi sempre chi è il `self`.
+* Se una classe include un modulo, dentro a un metodo del modulo il `self` è la classe, vedere il `self_spec.rb`.
 
 ## Simboli o Stringhe
 * I simboli (immutabili) sono usati di solito per i nomi delle cose, per esempio dei metodi, dato che non ci aspettiamo che il nome di un metodo cambi.
