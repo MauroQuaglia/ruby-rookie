@@ -27,9 +27,21 @@ describe('Some useful methods') do
       expect(singleton_methods).to eq([:my_singleton_method])
     end
 
-    it 'ancestors' do
+    it 'ancestors 1' do
       expect(Class.ancestors).to eq([Class, Module, Object, Kernel, BasicObject])
       expect(TheObjectModel.ancestors).to eq([TheObjectModel, Object, Kernel, BasicObject])
+    end
+
+    it 'ancestor 2' do
+      class TOM1; end
+      class TOM2 < TOM1; end
+      class TOM3; end
+
+      # TOM2 deriva da TOM1?
+      expect(TOM2 < TOM1).to be_truthy
+
+      # TOM3 deriva da TOM1?
+      expect(TOM3 < TOM1).to be_falsey
     end
   end
 

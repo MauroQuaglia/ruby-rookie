@@ -15,6 +15,10 @@
 * `require` -> importa librerie.
 * `load` può sporcare il current scope con le sue costanti, vedere le documentazione del metodo.
 
+## super, superclass
+* Non confondiamo le cose. Quando chiamo `super` vado a cercare nella catena degli ancestor (che include sia classi che moduli) per cercare il nome di un metodo.
+* Con `superclass` invece chiedo solo il nome della classe padre.
+
 ## Costanti
 * Tutte le costanti (ciò che inizia per lettera maiuscola) sono organizzate ad albero come un file system, dove i moduli e le classi sono le directory e i file le costanti.
 * Sono identificate in maniera univoca dal loro 'path' dove si usa un `::` come separatore.
