@@ -36,6 +36,13 @@
 * Per capire dove sono e quali metodi ho a disposizione e quali variabili vedo il trucco è chiedersi sempre chi è il `self`.
 * Se una classe include un modulo, dentro a un metodo del modulo il `self` è la classe, vedere il `self_spec.rb`.
 
+## Sender e Receiver
+* Esempio `3.times do ... end`
+  * Il `3` è il `receiver`. 
+  * Il metodo `times()` è il messaggio 
+  * Il `.` (dot representation) è il `sending`, colui che inoltra il messaggio al `receiver`.
+  * Il `sender` è l'oggetto che possiede lo scope in cui ha origine il messaggio. Il valore di `self` nel momento in cui il messaggio è stato mandato.
+
 ## Simboli o Stringhe
 * I simboli (immutabili) sono usati di solito per i nomi delle cose, per esempio dei metodi, dato che non ci aspettiamo che il nome di un metodo cambi.
 * Per esempio, invece di  `1.send('+', 2)`, di solito si usa `1.send(:+, 2)`

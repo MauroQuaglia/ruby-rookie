@@ -5,6 +5,7 @@ describe('Spell: Nil Guard') do
     a ||= 10 # E' uno shortcut di: a || (a = 10)
     expect(a).to eq(5)
 
+    # Attenzione che qui, b non è neanche definita!
     b ||= 10
     expect(b).to eq(10)
   end
@@ -18,7 +19,7 @@ describe('Spell: Nil Guard') do
     end
     expect(a).to eq(5)
 
-    #b = nil
+    # Attenzione che qui, b non è neanche definita!
     if defined?(b) && b
       b
     else
