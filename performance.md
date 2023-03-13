@@ -1,0 +1,23 @@
+## Performance
+* Un elevato consumo di memoria è intrinseco in Ruby, è un effetto collaterale del "Tutto è un oggetto". Inoltre il GC lento è un problema atavico di Ruby.
+* Con il GC disattivato le ultime versioni di Ruby e le prime quasi si equivalgono in termini di performance. 
+* Con il GC attivo le ultime versioni di Ruby sono nettamente più veloci.
+  * Sono state migliorate le performance del GC.
+* Più usiamo memoria, più il GC dovrà intervenire e operare. Il consumo di memoria e il GC sono le principali ragioni per cui Ruby è lento.
+* Disabilitare il GC non è mai una buona idea, la memoria peggiora al punto che le performance degradano rapidamente.
+* Ricordiamo poi che la maggioranza dei problemi di performance provengono da poche specifiche parti di un codice.
+
+# Best Practices
+1) Ottimizza la memoria 
+* L'80% delle performance si ottengono da una ottimizzazione della memoria, l'altro 20% da tutto il resto. 
+* Ridurre il consumo di memoria, riduce l'utilizzo del GC. 
+* Quando scriviamo il codice pensiamo a quanta memoria richiede quella singola linea di codice che stiamo scrivendo.
+* Tutte le volte che creo o copio qualcosa in memoria, sto dando del lavoro al GC.
+
+2) Metodi (Anche se può succedere che a volte non venga comunque fatta una ottimizzazione il più delle volte è così)
+* Usare i metodi con il bang `!`, così che invece di creare una copia, cambiamo l'originale.
+* `<<` invece di `+=`. Esempio: meglio `x << 'foo'` piuttosto che `x += 'foo'`.
+
+## Alcuni link utili
+* https://blog.appsignal.com/2021/11/17/practical-garbage-collection-tuning-in-ruby.html
+* https://www.speedshop.co/2017/03/09/a-guide-to-gc-stat.html
