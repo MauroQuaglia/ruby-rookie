@@ -6,6 +6,7 @@
 * Più usiamo memoria, più il GC dovrà intervenire e operare. Il consumo di memoria e il GC sono le principali ragioni per cui Ruby è lento.
 * Disabilitare il GC non è mai una buona idea, la memoria peggiora al punto che le performance degradano rapidamente.
 * Ricordiamo poi che la maggioranza dei problemi di performance provengono da poche specifiche parti di un codice.
+* Il `ObjectSpace.each_object(Thing)` permette di vedere quanti oggetti Thing ci sono in giro.
 
 # Best Practices
 1) Ottimizza la memoria 
@@ -17,6 +18,16 @@
 2) Metodi (Anche se può succedere che a volte non venga comunque fatta una ottimizzazione il più delle volte è così)
 * Usare i metodi con il bang `!`, così che invece di creare una copia, cambiamo l'originale.
 * `<<` invece di `+=`. Esempio: meglio `x << 'foo'` piuttosto che `x += 'foo'`.
+
+3) Leggere i file riga per riga
+* In questo modo non usiamo memoria addizionale, memorizziamo solo la riga su cui stiamo facendo cose e poi il GC appena si attiva la butta.
+* In effetti si vede che con il GC attivo le prestazioni migliorano e la memoria rimane bassissima.
+* Per esempio invece di `File.readlines('data.csv')` è meglio
+```
+file = File.open('data.csv', 'r'); 
+while line = file.gets
+end
+```
 
 ## Alcuni link utili
 * https://blog.appsignal.com/2021/11/17/practical-garbage-collection-tuning-in-ruby.html
