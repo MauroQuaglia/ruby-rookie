@@ -29,6 +29,11 @@ while line = file.gets
 end
 ```
 
+4) Deferred
+* Tutte le volte che creiamo blocchi o `Proc` teniamo a mente che questi portano con se un riferimento al contesto in cui sono stati creati. 
+* Per cui anche se l'oggetto originale (quello in cui ho scritto il blocco) non ci serve più, rimane comunque in memoria finché la `Proc`  ha senso di esistere.
+* Il GC, non pulirà quegli oggetti e potrebbero verificarsi dei memory leak.
+
 ## Alcuni link utili
 * https://blog.appsignal.com/2021/11/17/practical-garbage-collection-tuning-in-ruby.html
 * https://www.speedshop.co/2017/03/09/a-guide-to-gc-stat.html
