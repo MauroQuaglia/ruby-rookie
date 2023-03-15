@@ -8,6 +8,11 @@
 * Ricordiamo poi che la maggioranza dei problemi di performance provengono da poche specifiche parti di un codice.
 * Il `ObjectSpace.each_object(Thing)` permette di vedere quanti oggetti Thing ci sono in giro.
 
+# GC
+* [una guida](https://www.speedshop.co/2017/03/09/a-guide-to-gc-stat.html)
+* Quando non sono in produzione lo posso forzare a girare con `GC.start`.
+* In automatico viene triggerato quando la memoria ha raggiunto un certo livello di occupazione. Meno uccupiamo la memoria meno viene lanciato.
+
 # Best Practices
 1) Ottimizza la memoria 
 * L'80% delle performance si ottengono da una ottimizzazione della memoria, l'altro 20% da tutto il resto. 
@@ -30,10 +35,6 @@ end
 ```
 
 4) Deferred
-* Tutte le volte che creiamo blocchi o `Proc` teniamo a mente che questi portano con se un riferimento al contesto in cui sono stati creati. 
-* Per cui anche se l'oggetto originale (quello in cui ho scritto il blocco) non ci serve più, rimane comunque in memoria finché la `Proc`  ha senso di esistere.
+* Tutte le volte che creiamo blocchi o `Proc` questi portano con se un riferimento al contesto in cui sono stati creati. 
+* Per cui anche se l'oggetto originale (quello in cui ho scritto il blocco) non ci serve più, rimane comunque in memoria finché la `Proc` è memorizzata da qualche parte.
 * Il GC, non pulirà quegli oggetti e potrebbero verificarsi dei memory leak.
-
-## Alcuni link utili
-* https://blog.appsignal.com/2021/11/17/practical-garbage-collection-tuning-in-ruby.html
-* https://www.speedshop.co/2017/03/09/a-guide-to-gc-stat.html
