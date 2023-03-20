@@ -1,0 +1,53 @@
+Measure Mode: wall_time
+Thread ID: 80
+Fiber ID: 60
+Total Time: 0.14801073400303721
+Sort by: total_time
+
+  %total   %self      total       self       wait      child            calls     name                          location
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 100.00%   0.02%      0.148      0.000      0.000      0.148                1     [global]#                      ruby_prof_api.rb:14
+                      0.148      0.000      0.000      0.148              1/1     Integer#times
+------------------------------------------------------------------------------------------------------------------------------------------------------
+                      0.148      0.000      0.000      0.148              1/1     [global]#
+  99.98%   0.05%      0.148      0.000      0.000      0.148                1     Integer#times                  
+                      0.147      0.000      0.000      0.147            12/12     Object#create_array
+                      0.000      0.000      0.000      0.000              6/6     <Class::Date>#parse
+                      0.000      0.000      0.000      0.000              6/6     <Class::Date>#strptime
+                      0.000      0.000      0.000      0.000            12/12     Integer#**
+                      0.000      0.000      0.000      0.000            12/12     Integer#odd?
+                      0.000      0.000      0.000      0.000            12/12     Integer#+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+                      0.147      0.000      0.000      0.147            12/12     Integer#times
+  99.65%   0.02%      0.147      0.000      0.000      0.147               12     Object#create_array            ruby_prof_api.rb:7
+                      0.147      0.000      0.000      0.147            12/12     Class#new
+                      0.000      0.000      0.000      0.000            12/12     Kernel#puts
+------------------------------------------------------------------------------------------------------------------------------------------------------
+                      0.147      0.000      0.000      0.147            12/12     Object#create_array
+  99.51%   0.01%      0.147      0.000      0.000      0.147               12     Class#new                      
+                      0.147      0.019      0.000      0.129            12/12     Array#initialize
+------------------------------------------------------------------------------------------------------------------------------------------------------
+                      0.147      0.019      0.000      0.129            12/12     Class#new
+  99.49%  12.55%      0.147      0.019      0.000      0.129               12     Array#initialize               
+                      0.129      0.129      0.000      0.000      39974/39974     String#*
+------------------------------------------------------------------------------------------------------------------------------------------------------
+                      0.129      0.129      0.000      0.000      39974/39974     Array#initialize
+  86.94%  86.94%      0.129      0.129      0.000      0.000            39974     String#*                       
+
+* recursively called methods
+
+Columns are:
+
+  %self     - The percentage of time spent in this method, derived from self_time/total_time.
+  total     - The time spent in this method and its children.
+  self      - The time spent in this method.
+  wait      - The amount of time this method waited for other threads.
+  child     - The time spent in this method's children.
+  calls     - The number of times this method was called.
+  name      - The name of the method.
+  location  - The location of the method.
+
+The interpretation of method names is:
+
+  * MyObject#test - An instance method "test" of the class "MyObject"
+  * <Object:MyObject>#test - The <> characters indicate a method on a singleton class.
