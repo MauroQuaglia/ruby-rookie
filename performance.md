@@ -12,10 +12,14 @@
 * Il `ObjectSpace.each_object(Thing)` permette di vedere quanti oggetti Thing ci sono in giro.
 * Il `ObjectSpace.count_objects(my_hash)` permette di vedere quanti oggetti ci sono in giro.
 * Usare il `my_measure` tool per verificare le performance o la versione __easy__ per confronti veloci.
-* Se si parla di performance bisognerebbe anche capire chi deve fare cosa. Per esempio fare ordinamenti in Rails su dei Modelli a database non è efficiente,
-* i database sono ottimizzati per quello e scalano molto meglio quindi se ci si può appoggiare a loro tanto meglio.
+* Se si parla di performance bisognerebbe anche capire chi deve fare cosa. 
+  * Per esempio fare ordinamenti in Rails su dei Modelli a database non è efficiente. I database sono ottimizzati per quello e scalano molto meglio quindi se ci si può appoggiare a loro tanto meglio.
 * Se alcune parti sono particolarmente lente si posso anche cercare delle gemme scritte in C puro che di base sono molto più veloci.
-
+  * Esistono gemme che hanno riscritto parti lente di Ruby o Rails in C.
+  * Gemme che riscrivono specifici task in C.
+* Rails
+  * Se non possofare a meno di usare ActiveRecord (che è molto esoso) quando faccio le query è sempre meglio evitare le `select *` e prendere solo le colone indispensabili.Questo soprattutto nelle `join`.
+  * Anche usare i `belongs_to` e gli `has_many` aiuta.
 # GC
 
 * [una guida](https://www.speedshop.co/2017/03/09/a-guide-to-gc-stat.html)
@@ -101,3 +105,31 @@ end
 * Parlando di un grande numero di cicli si vede che:
 * Per esempio il `Date.parse('2014-05-23')` (0.300 ms) è decisamente più lento di `Date.strptime('2014-05-23', '%Y-%m-%d')` (0.060 ms)
 * Questo invece è super veloce `Date.civil(2014, 05, 23)` (0.020 ms)
+
+# Rails 
+## `ActiveRecord`
+* Alcune query non si riescono ad ottimizzare con `ActiveRecord`. Per esempio se devo fare delle `join` dove mi serve ritornare solo alcuni campi. Posso sempre farle "a mano", per esempio `MyClass.find_by_sql("SQL")` e ottenere incrementi di performance notevoli.
+* Il `.all` è molto inefficiente. In alcuni casi potrebbe essere una scelta migliore usare `.find_each` o `.find_in_batchs` che invece di caricare tutto in una volta lo fa a colpi di 1000 record (`batch_size`) e questo risparmia memoria e ottimizza il `GC`.
+* Se non mi interessa che vengano costruiti degli oggetti posso usare cose del tipo `ActiveRecord::Base.connection.execute("SQL")` o `ActiveRecord::Base.connection.select_values("SQL")` che ritornano risultati senza creare oggetti. Anche il metodo `MyClass.all.pluck("SQL")` è molto efficiente perché ritorna solo il valore desiderato ma non crea nessun oggetto.
+
+## `ActionView`
+* Invece di fare un ciclo con all'interno un parziale, è molto meglio usare la collection: `<%= render partial: 'object', collection: @objects %>` o in versione compatta `<%= render @objects %>`. Questa soluzione è mediamente 20 volte più veloce.
+* Impostare il `config.log_level` a `:warn` perchè `:info` scrive molto e in tal caso si perde quasi il 45% del tempo totale nel logger!
+* Anche gli helper come `link_to`, `url_for`, `img_tag` nascondono delle insidie. Sebbene sia difficile farne a meno tenaimo almeno in conto queste osservazioni: Più il routing diventa complesso e più il `link_to` e l' `url_for` rallentano.
+  Più abbiamo assets e più `img_tag` rallenta.
+
+
+# Profilazione
+* __1)__ Misurare l'uso della CPU e della memoria (facile, a mano o con strumenti)
+* __2)__ Interpretare i risultati (difficile, è più una cosa artigianale che da ingenieri)
+
+# Partiama dalla __1__
+* Usiamo la gemma [ruby_prof](https://rubygems.org/gems/ruby-prof). Possiamo poi interpretare i risultati con __ruby-prof__ stesso o con __KCachegrind__. Abbiamo a disposizione una:
+  * ruby-prof API ottima per parti isolate di codice.
+  * ruby-prof command-line per gli start-up delle applicazione.
+  * ruby-prof da inserire in un rails middelware per profilare Rails.
+
+* Tuttavia ci sono alcune regole preliminari da seguire:
+  * __1__) Disabilitare il __GC__ perché crea molta interferenza. Nel caso di Rails si può anche creare un middelware specifico per tutta l'applicazione.
+  * __2__) Profiliamo in produzione perché il locale non è affidabile. Pensiamo per esempio in Rails ai differenti setting `/config/environments/production.rb` e `/config/environments/development.rb`
+  * __3__) Profiliamo almeno due volte. La prima è quando la __cache è fredda__ la seconda quando la __cache è calda__.
