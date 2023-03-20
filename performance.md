@@ -127,7 +127,7 @@ end
 * Usiamo la gemma [ruby_prof](https://rubygems.org/gems/ruby-prof). Possiamo poi interpretare i risultati con __ruby-prof__ stesso o con __KCachegrind__. Abbiamo a disposizione una:
   * ruby-prof API ottima per parti isolate di codice.
   * ruby-prof command-line per gli start-up delle applicazione.
-  * ruby-prof da inserire in un rails middelware per profilare Rails.
+  * ruby-prof da inserire in un rails middelware per profilare Rails. Guardare il libro, ma è abbastanza semplice. Nel caso con il comando `rails middleware` possiamo vedere acnhe tutto l'elenco dei middelware caricati. Vedere per esempio la classe `GCDisabler`.
 
 * Tuttavia ci sono alcune regole preliminari da seguire:
   * __1__) Disabilitare il __GC__ perché crea molta interferenza. Nel caso di Rails si può anche creare un middelware specifico per tutta l'applicazione.
