@@ -1,0 +1,170 @@
+events: wall_time
+
+fl=
+fn=String::[]=
+0 15
+
+fl=
+fn=MatchData::end
+0 5
+
+fl=
+fn=MatchData::begin
+0 21
+
+fl=
+fn=Regexp::match
+0 35
+
+fl=
+fn=String::gsub!
+0 38
+
+fl=
+fn=Date::parse^
+0 283
+cfl=
+cfn=String::gsub!
+calls=6 0
+0 38
+cfl=
+cfn=Regexp::match
+calls=12 0
+0 35
+cfl=
+cfn=MatchData::begin
+calls=6 0
+0 21
+cfl=
+cfn=MatchData::end
+calls=6 0
+0 5
+cfl=
+cfn=String::[]=
+calls=6 0
+0 15
+cfl=
+cfn=Integer::div
+calls=6 0
+0 4
+
+fl=
+fn=String::*
+0 125763
+
+fl=
+fn=Integer::div
+0 11
+
+fl=
+fn=Date::strptime^
+0 134
+cfl=
+cfn=Integer::div
+calls=6 0
+0 8
+
+fl=/home/xpuser/mauro-quaglia/ruby-rookie/spec/ruby_performance_optimization/04_profile/<internal:numeric>
+fn=Integer::odd?
+164 15
+
+fl=
+fn=Integer::+
+0 11
+
+fl=
+fn=Array::initialize
+0 17507
+cfl=
+cfn=String::*
+calls=39974 9
+9 125763
+
+fl=
+fn=Class::new
+0 24
+cfl=
+cfn=Array::initialize
+calls=12 0
+0 143270
+
+fl=
+fn=IO::write
+0 168
+
+fl=
+fn=Integer::to_s
+0 15
+
+fl=
+fn=IO::puts
+0 70
+cfl=
+cfn=Integer::to_s
+calls=12 0
+0 15
+cfl=
+cfn=IO::write
+calls=12 0
+0 168
+
+fl=
+fn=Kernel::puts
+0 28
+cfl=
+cfn=IO::puts
+calls=12 0
+0 253
+
+fl=/home/xpuser/mauro-quaglia/ruby-rookie/spec/ruby_performance_optimization/04_profile/ruby_prof_api.rb
+fn=Object::create_array
+7 35
+cfl=
+cfn=Kernel::puts
+calls=12 8
+8 281
+cfl=
+cfn=Class::new
+calls=12 9
+9 143293
+
+fl=
+fn=Integer::**
+0 7
+
+fl=
+fn=Integer::times
+0 119
+cfl=
+cfn=Integer::**
+calls=12 15
+15 7
+cfl=/home/xpuser/mauro-quaglia/ruby-rookie/spec/ruby_performance_optimization/04_profile/ruby_prof_api.rb
+cfn=Object::create_array
+calls=12 15
+15 143609
+cfl=
+cfn=Integer::+
+calls=12 16
+16 11
+cfl=/home/xpuser/mauro-quaglia/ruby-rookie/spec/ruby_performance_optimization/04_profile/<internal:numeric>
+cfn=Integer::odd?
+calls=12 17
+17 15
+cfl=
+cfn=Date::strptime^
+calls=6 17
+17 142
+cfl=
+cfn=Date::parse^
+calls=6 17
+17 401
+
+fl=/home/xpuser/mauro-quaglia/ruby-rookie/spec/ruby_performance_optimization/04_profile/ruby_prof_api.rb
+fn=[global]::
+14 43
+cfl=
+cfn=Integer::times
+calls=1 14
+14 144303
+

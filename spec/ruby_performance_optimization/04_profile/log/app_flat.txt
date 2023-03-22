@@ -1,12 +1,12 @@
 Measure Mode: wall_time
 Thread ID: 80
 Fiber ID: 60
-Total: 0.148011
+Total: 0.144346
 Sort by: self_time
 
  %self      total      self      wait     child     calls  name                           location
- 86.94      0.129     0.129     0.000     0.000    39974   String#*                       
- 12.55      0.147     0.019     0.000     0.129       12   Array#initialize               
+ 87.13      0.126     0.126     0.000     0.000    39974   String#*                       
+ 12.13      0.143     0.018     0.000     0.126       12   Array#initialize               
 
 * recursively called methods
 
