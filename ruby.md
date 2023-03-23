@@ -20,6 +20,9 @@
 * Non confondiamo le cose. Quando chiamo `super` vado a cercare nella catena degli ancestor (che include sia classi che moduli) per cercare il nome di un metodo.
 * Con `superclass` invece chiedo solo il nome della classe padre.
 
+## Moduli
+* Quando aggiungo un modulo a una classe sto crenado un mixin. Esempio se aggiungo il modulo `Driveable` alla classe `Car` sto creando il mixin `Driveable Car`.
+
 ## Costanti
 * Tutte le costanti (ciò che inizia per lettera maiuscola) sono organizzate ad albero come un file system, dove i moduli e le classi sono le directory e i file le costanti.
 * Sono identificate in maniera univoca dal loro 'path' dove si usa un `::` come separatore.
@@ -42,11 +45,18 @@
   * Il metodo `times()` è il messaggio 
   * Il `.` (dot representation) è il `sending`, colui che inoltra il messaggio al `receiver`.
   * Il `sender` è l'oggetto che possiede lo scope in cui ha origine il messaggio. Il valore di `self` nel momento in cui il messaggio è stato mandato.
-
+  * Da cui anche la differenza tra metodi e messaggi. I metodi stanno nelle classi (o singleton_class) ma i messaggi possono essere qualunque cosa che viene chiesto a un oggetto.
 ## Simboli o Stringhe
 * I simboli (immutabili) sono usati di solito per i nomi delle cose, per esempio dei metodi, dato che non ci aspettiamo che il nome di un metodo cambi.
 * Per esempio, invece di  `1.send('+', 2)`, di solito si usa `1.send(:+, 2)`
 * Comunque è una banalità passare da una stringa a un simbolo  e viceversa.
+* I simboli, rispetto alle stringhe sono unici:
+* ```
+  'a'.object_id => 9360
+  'a'.object_id => 11440
+  :a.object_id => 836188
+  :a.object_id => 836188
+  ```
 
 ## Wrapping di un metodo
 * Si può fare con diversi spell: `Around Alias`, `Refinement Wrapper`, `Prepend Wrapper`. Quest'ultimo è quello considerato più pulito ed esplicito.

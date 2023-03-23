@@ -126,12 +126,13 @@ end
 # Partiama dalla __1__
 * Usiamo la gemma [ruby_prof](https://rubygems.org/gems/ruby-prof). Possiamo poi interpretare i risultati con __ruby-prof__ stesso o con __KCachegrind__. Abbiamo a disposizione una:
   * ruby-prof API ottima per parti isolate di codice.
+    * Possiamo usarla anche per Rails, lo mettiamo in un controller per esempio per monitorare una parte molto isolata di codice.
   * ruby-prof command-line per gli start-up delle applicazione.
-  * ruby-prof da inserire in un rails middelware per profilare Rails. Guardare il libro, ma è abbastanza semplice. Nel caso con il comando `rails middleware` possiamo vedere acnhe tutto l'elenco dei middelware caricati. Vedere per esempio la classe `GCDisabler`.
+  * ruby-prof da inserire in un rails middelware per profilare Rails. Guardare il libro, ma è abbastanza semplice. Nel caso con il comando `rails middleware` possiamo vedere anche tutto l'elenco dei middelware caricati. Vedere per esempio la classe `GCDisabler`.
   * Dei tre risultati che possiamo ottenere (flat, graph, stack) prima si guardano i primi due, poi per parti di codice più isolate è ottimo lo stack ma tende a diventare illeggibile per codice grosso.
     * Possiamo però aiutarci con dei tool pensati per migliorare la visualizzazione: [kcachegrind](https://kcachegrind.github.io/html/Home.html)
     * `sudo apt-get update`; `sudo apt-get -y install kcachegrind`.
-    * 
+  
 * Tuttavia ci sono alcune regole preliminari da seguire:
   * __1__) Disabilitare il __GC__ perché crea molta interferenza. Nel caso di Rails si può anche creare un middelware specifico per tutta l'applicazione.
   * __2__) Profiliamo in produzione perché il locale non è affidabile. Pensiamo per esempio in Rails ai differenti setting `/config/environments/production.rb` e `/config/environments/development.rb`
