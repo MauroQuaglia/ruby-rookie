@@ -43,7 +43,3 @@ def gc_disable(title)
          ruby_version: RUBY_VERSION,
          title: title }.to_json)
 end
-
-# Cose interessanti da aggiungere: differenza delle due hash
-# h_before, h_after = {}, {}
-# ObjectSpace.count_objects(h_before)

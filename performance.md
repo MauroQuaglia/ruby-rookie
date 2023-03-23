@@ -132,6 +132,7 @@ end
   * Dei tre risultati che possiamo ottenere (flat, graph, stack) prima si guardano i primi due, poi per parti di codice più isolate è ottimo lo stack ma tende a diventare illeggibile per codice grosso.
     * Possiamo però aiutarci con dei tool pensati per migliorare la visualizzazione: [kcachegrind](https://kcachegrind.github.io/html/Home.html)
     * `sudo apt-get update`; `sudo apt-get -y install kcachegrind`.
+    * Tuttavia non sono semplici da usare e bisogna essere a conoscenza delle pecularità (o anche errori) che contengono.
   
 * Tuttavia ci sono alcune regole preliminari da seguire:
   * __1__) Disabilitare il __GC__ perché crea molta interferenza. Nel caso di Rails si può anche creare un middelware specifico per tutta l'applicazione.
