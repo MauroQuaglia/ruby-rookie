@@ -6,6 +6,13 @@
 * In Ruby tutto (o quasi) è un oggetto quindi anche una classe è un oggetto. Per creare una classe dinamicamente si può usare:
     * `MyClass` = `Class.new`
 * Questo significa anche che i metodi a disposizione in una classe (`MyClass`) sono i metodi di istanza di `Class`.
+* Per esempio i messaggi che mandiamo ad un oggetto non sono degli oggetti anche se possiamo trasformarli in oggetti:
+```
+  keys_method = {a: 1, b: 2}.method(:keys)
+  keys_method.class => Method
+```
+* Anche i blocchi non sono oggetti, ma possiamo trasformarli in oggetti usando `&` che li trasforma in `Proc`.
+* Pure le strutture di controllo dei cicli, per esempio `loop`, `while`, ..., non sono oggetti.
 * Ricordiamo poi che `Class.superclass` = `Module` che significa che ogni classe è un modulo con in più qualche metodo di come `new`, `supeclass`, ...
 * Ruby tratta classi e moduli come la stessa cosa, l'unico motivo per cui esistono entrambi è per chiarezza: usiamo un modulo quando vogliamo aggiungere qualcosa e usiamo una classe quando vogliamo fare delle istande o ereditare. 
 
@@ -15,38 +22,40 @@
 * `require` -> importa librerie e esegue il codice; Memorizza il file.
 * `load` può sporcare il current scope con le sue costanti, vedere le documentazione del metodo.
 * C'è un esempio specifico da poter guardare nel codice.
+* Alla fine il `load` e il `require` vanno a cercare cose nel `$LOAD_PATH`: `/rubystubs/rubystubs31/global_variables.rb`
 
-## super, superclass
+# super, superclass
 * Non confondiamo le cose. Quando chiamo `super` vado a cercare nella catena degli ancestor (che include sia classi che moduli) per cercare il nome di un metodo.
 * Con `superclass` invece chiedo solo il nome della classe padre.
 
-## Moduli
+# Moduli
 * Quando aggiungo un modulo a una classe sto crenado un mixin. Esempio se aggiungo il modulo `Driveable` alla classe `Car` sto creando il mixin `Driveable Car`.
 
-## Costanti
+# Costanti
 * Tutte le costanti (ciò che inizia per lettera maiuscola) sono organizzate ad albero come un file system, dove i moduli e le classi sono le directory e i file le costanti.
 * Sono identificate in maniera univoca dal loro 'path' dove si usa un `::` come separatore.
 * I nomi delle classi sono delle `costanti`.
 * `Module.constants` ritorna tutte le costanti nel current-scope, quindi anche tutti i nomi delle classi.
 
-## Kernel
+# Kernel
 * I metodi di utilità che voglio fare condividere a tutti gli oggetti vanno messi qua.
 
-## self
+# self
 * `self` rappresenta sempre il riferimento all'oggetto  corrente. Quando il receiver non è esplicito, allora il receiver è `self`.
 * Ovunque siamo c'è sempre il current_object e la current_class.
 * Esempio: main (current_object) | Object (current_class)
 * Per capire dove sono e quali metodi ho a disposizione e quali variabili vedo il trucco è chiedersi sempre chi è il `self`.
 * Se una classe include un modulo, dentro a un metodo del modulo il `self` è la classe, vedere il `self_spec.rb`.
 
-## Sender e Receiver
+# Sender e Receiver
 * Esempio `3.times do ... end`
   * Il `3` è il `receiver`. 
   * Il metodo `times()` è il messaggio 
   * Il `.` (dot representation) è il `sending`, colui che inoltra il messaggio al `receiver`.
   * Il `sender` è l'oggetto che possiede lo scope in cui ha origine il messaggio. Il valore di `self` nel momento in cui il messaggio è stato mandato.
   * Da cui anche la differenza tra metodi e messaggi. I metodi stanno nelle classi (o singleton_class) ma i messaggi possono essere qualunque cosa che viene chiesto a un oggetto.
-## Simboli o Stringhe
+  
+# Simboli o Stringhe
 * I simboli (immutabili) sono usati di solito per i nomi delle cose, per esempio dei metodi, dato che non ci aspettiamo che il nome di un metodo cambi.
 * Per esempio, invece di  `1.send('+', 2)`, di solito si usa `1.send(:+, 2)`
 * Comunque è una banalità passare da una stringa a un simbolo  e viceversa.
@@ -58,7 +67,7 @@
   :a.object_id => 836188
   ```
 
-## Wrapping di un metodo
+# Wrapping di un metodo
 * Si può fare con diversi spell: `Around Alias`, `Refinement Wrapper`, `Prepend Wrapper`. Quest'ultimo è quello considerato più pulito ed esplicito.
 * `Around Alias` e `Prepend Wrapper` hanno scope globale mentre `Refinement Wrapper` ha uno scope più limitato.
 
@@ -80,6 +89,7 @@
 * Trucco per bypassare gli scope gates: `class` -> `Class.new`, `module` -> `Module.new`, `def` -> `define_method`
 * La `&` permette di convertire un blocco in una `proc` e vice versa. 
 * Per passare da blocco a `proc` posso usare la `&` o il metodo `.to_proc` che fa la stessa cosa.
+* Quando scrivo un metodo che prevede un blocco ricordarsi sempre del `block_given?`
 
 # Method missing (best pratice)
 * NB1) Quando si implementa il `method_missing` meglio implementare anche il `respond_to_missing?`.

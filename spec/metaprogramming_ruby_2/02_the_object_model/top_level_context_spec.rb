@@ -15,6 +15,10 @@ end
 # puts my_object_method # In Object
 # puts ciao # ciao
 
+puts 'ciao' # Il receiver non è esplicito, ma è il top level context
+self.puts 'ciao' # Qui il receiver è esplicito
+$stdout.puts 'ciao'
+
 # Ora i Ruby nuovi danno errore, in passato no perché TopLevelContext < Object vedeva anche @@v
 class TopLevelContext
   def my_var
