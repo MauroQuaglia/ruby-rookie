@@ -138,3 +138,13 @@ end
   * __1__) Disabilitare il __GC__ perché crea molta interferenza. Nel caso di Rails si può anche creare un middelware specifico per tutta l'applicazione.
   * __2__) Profiliamo in produzione perché il locale non è affidabile. Pensiamo per esempio in Rails ai differenti setting `/config/environments/production.rb` e `/config/environments/development.rb`
   * __3__) Profiliamo almeno due volte. La prima è quando la __cache è fredda__ la seconda quando la __cache è calda__.
+
+# Come si fa?
+* Se dobbiamo migliorare le performance di un codice dobbiamo seguire i seguenti passi.
+* 1) Assicurarci che il codice sia testato bene perché andremo a cambiarlo.
+* 2) Usare il `time = Benchmark.realtime {...codice...}` per misurare l'incremento delle performance.  
+     __NB__: Usare il profilatore per questa parte non è conveniente, perché a volte segnala degli incrementi che poi non si rivelano tali nel mondo reale. Questo perché il profilatore si mette in mezzo a tutte le chiamate e le profila... e questo costo per ogni chiamata nel mondo reale non c'è.
+* 3) Usare il `RubyProf::Profile.new` per capire cosa si può migliorare, e scegliere un tipo di visualizzione dei risultati che ci piace. 
+* 4) Meglio poi salvarsi i file delle varie profilazioni con nomi diversi così poi li possiamo confrontare tra di loro.
+* 5) Ruby è un linguaggio interpretato quindi anche la "chiamata" di una funzione ha il suo costo.
+     Possiamo anche porre l'attenzione su quante chiamate a funzioni facciamo... ricordandoci però del punto 2. Non fidiamoci del tempo del profilatore sui cicli e usiamo il benchmark! 
