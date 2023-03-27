@@ -15,7 +15,6 @@ Possiamo però aiutarci con dei tool pensati per migliorare la visualizzazione: 
 Tuttavia non sono semplici da usare e bisogna essere a conoscenza delle pecularità (o anche errori) che contengono.
 =end
 
-require 'date'
 require 'ruby-prof'
 
 def my_ruby_prof(title)
@@ -28,19 +27,19 @@ def my_ruby_prof(title)
 
   flat_printer = RubyProf::FlatPrinter.new(result)
   flat_printer.print(
-    File.open("./#{title}_flat.txt", 'w+'),
+    File.open("./log/#{title}_flat.txt", 'w+'),
     min_percent: 1
   )
 
   graph_printer = RubyProf::GraphHtmlPrinter.new(result)
   graph_printer.print(
-    File.open("./#{title}_graph.html", 'w+'),
+    File.open("./log/#{title}_graph.html", 'w+'),
     min_percent: 1
   )
 
   call_stack_printer = RubyProf::CallStackPrinter.new(result)
   call_stack_printer.print(
-    File.open("./#{title}_stack.html", 'w+')
+    File.open("./log/#{title}_stack.html", 'w+')
   )
 
   call_tree_printer = RubyProf::CallTreePrinter.new(result)

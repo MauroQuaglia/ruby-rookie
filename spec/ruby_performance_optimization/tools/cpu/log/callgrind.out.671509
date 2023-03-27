@@ -1,0 +1,22 @@
+events: wall_time
+
+fl=
+fn=String::initialize
+0 1
+
+fl=
+fn=Class::new
+0 4
+cfl=
+cfn=String::initialize
+calls=1 0
+0 1
+
+fl=/home/xpuser/mauro-quaglia/ruby-rookie/spec/ruby_performance_optimization/tools/cpu/my_ruby_prof.rb
+fn=Object::my_ruby_prof
+24 21
+cfl=
+cfn=Class::new
+calls=1 9
+9 5
+
