@@ -141,5 +141,5 @@ end
 ## __La Memoria__ (difficile)
 * Responsabile per l'80 % delle performance.
 * Monitoraggio: NewRelic
-* Profilazione: Valgrind Massif, stackprof, GC#stat, GC#profile, RSS, ObjectSpace.
+* Profilazione: Valgrind Massif, stackprof, GC#stat, GC::Profiler, RSS, ObjectSpace.
 * Cose da fare:  Abilitare il GC.
