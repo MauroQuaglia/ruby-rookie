@@ -1,11 +1,11 @@
-require_relative '../tools/easy'
+require_relative '../tools/cpu/my_benchmark'
 
 obj = 'string'
 
-easy_measure('==') do
+my_benchmark('==', 100_000) do
   obj.class == String
 end
 
-easy_measure('is_a?') do
+my_benchmark('is_a?', 100_000) do
   obj.is_a?(String)
 end
