@@ -118,33 +118,28 @@ end
 * Anche gli helper come `link_to`, `url_for`, `img_tag` nascondono delle insidie. Sebbene sia difficile farne a meno tenaimo almeno in conto queste osservazioni: Più il routing diventa complesso e più il `link_to` e l' `url_for` rallentano.
   Più abbiamo assets e più `img_tag` rallenta.
 
+# Monitoraggio e Profilazione
+* Dobbiamo concentrarci su due aspetti:
+* __1)__ La CPU
+* __2)__ La Memoria
 
-# Profilazione
-* __1)__ Misurare l'uso della CPU e della memoria (facile, a mano o con strumenti)
-* __2)__ Interpretare i risultati (difficile, è più una cosa artigianale che da ingenieri)
+## __La CPU__ (facile)
+* Responsabile per il 20 % delle performance.
+* Monitoraggio: benchmark
+* Profilazione: [ruby_prof](https://rubygems.org/gems/ruby-prof)
+* Cose da fare:
+  * Disabilitare il __GC__ perché crea molta interferenza. Nel caso di Rails si può anche creare un middelware specifico per tutta l'applicazione.
+  * Profiliamo in produzione perché il locale non è affidabile. Pensiamo per esempio in Rails ai differenti setting `/config/environments/production.rb` e `/config/environments/development.rb`
+  * Profiliamo almeno due volte. La prima è quando la __cache è fredda__ la seconda quando la __cache è calda__.
+  * Assicuriamoci che il codice sia testato bene perché andremo a cambiarlo.
+  * Usare il `time = Benchmark.realtime {...codice...}` per misurare l'incremento delle performance.  
+    __NB__: Il profilatore per questa parte non è affidabile, perché a volte segnala degli incrementi che poi non si rivelano tali nel mondo reale. Questo perché il profilatore si mette in mezzo a tutte le chiamate e le profila... e questo costo per ogni chiamata nel mondo reale non c'è.
+  * Usare il `RubyProf::Profile.new` per capire cosa si può migliorare, e scegliere un tipo di visualizzione dei risultati che ci piace.
+  * Meglio poi salvarsi i file delle varie profilazioni con nomi diversi così poi li possiamo confrontare tra di loro.
+  *  Ruby è un linguaggio interpretato quindi anche la "chiamata" di una funzione ha il suo costo. Possiamo anche porre l'attenzione su quante chiamate a funzioni facciamo... ricordandoci però che la fonte di verità sui tempi è il benchmark.
 
-# Partiama dalla __1__
-* Usiamo la gemma [ruby_prof](https://rubygems.org/gems/ruby-prof). Possiamo poi interpretare i risultati con __ruby-prof__ stesso o con __KCachegrind__. Abbiamo a disposizione una:
-  * ruby-prof API ottima per parti isolate di codice.
-    * Possiamo usarla anche per Rails, lo mettiamo in un controller per esempio per monitorare una parte molto isolata di codice.
-  * ruby-prof command-line per gli start-up delle applicazione.
-  * ruby-prof da inserire in un rails middelware per profilare Rails. Guardare il libro, ma è abbastanza semplice. Nel caso con il comando `rails middleware` possiamo vedere anche tutto l'elenco dei middelware caricati. Vedere per esempio la classe `GCDisabler`.
-  * Dei tre risultati che possiamo ottenere (flat, graph, stack) prima si guardano i primi due, poi per parti di codice più isolate è ottimo lo stack ma tende a diventare illeggibile per codice grosso.
-    * Possiamo però aiutarci con dei tool pensati per migliorare la visualizzazione: [kcachegrind](https://kcachegrind.github.io/html/Home.html)
-    * `sudo apt-get update`; `sudo apt-get -y install kcachegrind`.
-    * Tuttavia non sono semplici da usare e bisogna essere a conoscenza delle pecularità (o anche errori) che contengono.
-  
-* Tuttavia ci sono alcune regole preliminari da seguire:
-  * __1__) Disabilitare il __GC__ perché crea molta interferenza. Nel caso di Rails si può anche creare un middelware specifico per tutta l'applicazione.
-  * __2__) Profiliamo in produzione perché il locale non è affidabile. Pensiamo per esempio in Rails ai differenti setting `/config/environments/production.rb` e `/config/environments/development.rb`
-  * __3__) Profiliamo almeno due volte. La prima è quando la __cache è fredda__ la seconda quando la __cache è calda__.
-
-# Come si fa?
-* Se dobbiamo migliorare le performance di un codice dobbiamo seguire i seguenti passi.
-* 1) Assicurarci che il codice sia testato bene perché andremo a cambiarlo.
-* 2) Usare il `time = Benchmark.realtime {...codice...}` per misurare l'incremento delle performance.  
-     __NB__: Usare il profilatore per questa parte non è conveniente, perché a volte segnala degli incrementi che poi non si rivelano tali nel mondo reale. Questo perché il profilatore si mette in mezzo a tutte le chiamate e le profila... e questo costo per ogni chiamata nel mondo reale non c'è.
-* 3) Usare il `RubyProf::Profile.new` per capire cosa si può migliorare, e scegliere un tipo di visualizzione dei risultati che ci piace. 
-* 4) Meglio poi salvarsi i file delle varie profilazioni con nomi diversi così poi li possiamo confrontare tra di loro.
-* 5) Ruby è un linguaggio interpretato quindi anche la "chiamata" di una funzione ha il suo costo.
-     Possiamo anche porre l'attenzione su quante chiamate a funzioni facciamo... ricordandoci però del punto 2. Non fidiamoci del tempo del profilatore sui cicli e usiamo il benchmark! 
+## __La Memoria__ (difficile)
+* Responsabile per l'80 % delle performance.
+* Monitoraggio: NewRelic
+* Profilazione: Valgrind Massif, stackprof, GC#stat, GC#profile, RSS, ObjectSpace.
+* Cose da fare:  Abilitare il GC.
