@@ -122,6 +122,7 @@ end
 * Dobbiamo concentrarci su due aspetti:
 * __1)__ La CPU
 * __2)__ La Memoria
+* __3)__ La misura dei risultati
 
 ## __La CPU__ (facile)
 * Responsabile per il 20 % delle performance.
@@ -143,3 +144,19 @@ end
 * Monitoraggio: NewRelic
 * Profilazione: Valgrind Massif, stackprof, GC#stat, GC::Profiler, RSS, ObjectSpace.
 * Cose da fare:  Abilitare il GC.
+
+## __La misura dei risultati (se proprio le cose semplici non bastano)__
+* Il più delle volte qualche prova ripetuta e l'intuito ci guidano verso la soluzione... ma in un sistema complesso ci possono essere fattori esterni ed interni che la rendono poco stabile.
+* Per esempio il GC o dei processi che sta girando in background.
+* Dobbiamo assicurarci di pulire la memoria prima della misurazione, assicurarci che niente giri in parallelo, ...
+* Alcune delle cose che possiamo fare sono:
+  * La frequenza della CPU non dovrebbe scalare automaticamente: `cpupower frequency-info`. 
+  * Per esempio posiamo dire alla CPU di girare alla sua frequenza massima con cose del tipo `sudo cpupower frequency-set -g performance`. 
+  * In questo modo la impostiamo alla massima e gli diciamo di non scalare.
+* Warm-up:
+  * Capiamo se stiamo eseguendo codice con dati in cache o meno.
+  * A volte è interessante misurare entrambe le cose, a cache fredda e a cache calda.
+  * Un comando per pulire la cahce del file system è: `sudo echo 3 | sudo tee /proc/sys/vm/drop_caches`
+* Statistica:
+  * Se non si capisce bene se abbiamo ottimizzato o no dobbiamo affidarci alle prove ripetute, all'intervallo di confidenda e alla statistica. 
+  * ...o alla prova in produzione che facciamo prima :-)
