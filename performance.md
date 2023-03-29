@@ -123,6 +123,7 @@ end
 * __1)__ La CPU
 * __2)__ La Memoria
 * __3)__ La misura dei risultati
+* __4)__ Testing
 
 ## __La CPU__ (facile)
 * Responsabile per il 20 % delle performance.
@@ -161,3 +162,11 @@ end
 * Statistica:
   * Se non si capisce bene se abbiamo ottimizzato o no dobbiamo affidarci alle prove ripetute, all'intervallo di confidenda e alla statistica. 
   * ...o alla prova in produzione che facciamo prima :-)
+
+## __Testing__
+* Ci sono molti modi complicati di farlo, perché come abbiamo detto la misura è influenzata da molti fattori... figuriamoci lanciando l'intera suite di test.
+* Comunque possiamo provare a impostare una soglia o un intervallo di tempo in cui il tempo di esecuzione del mio specifico codice deve stare.
+* Se il test dice che suono fuori dall'intervallo possono essere successe due cose:
+  * Ho migliorato la performance
+  * Ho peggiorato la performance
+* In ogni caso vale la pena vedere cosa è successo.
