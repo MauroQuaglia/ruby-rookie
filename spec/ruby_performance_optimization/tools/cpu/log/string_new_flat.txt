@@ -1,13 +1,13 @@
 Measure Mode: wall_time
 Thread ID: 80
 Fiber ID: 60
-Total: 0.000026
+Total: 0.000024
 Sort by: self_time
 
  %self      total      self      wait     child     calls  name                           location
- 81.43      0.000     0.000     0.000     0.000        1   Object#my_ruby_prof            /home/xpuser/mauro-quaglia/ruby-rookie/spec/ruby_performance_optimization/tools/cpu/my_ruby_prof.rb:24
- 15.13      0.000     0.000     0.000     0.000        1   Class#new                      
-  3.44      0.000     0.000     0.000     0.000        1   String#initialize              
+ 82.79      0.000     0.000     0.000     0.000        1   Object#my_ruby_prof            /home/xpuser/mauro-quaglia/ruby-rookie/spec/ruby_performance_optimization/tools/cpu/my_ruby_prof.rb:24
+ 14.18      0.000     0.000     0.000     0.000        1   Class#new                      
+  3.03      0.000     0.000     0.000     0.000        1   String#initialize              
 
 * recursively called methods
 

@@ -23,6 +23,8 @@
 * `load` può sporcare il current scope con le sue costanti, vedere le documentazione del metodo.
 * C'è un esempio specifico da poter guardare nel codice.
 * Alla fine il `load` e il `require` vanno a cercare cose nel `$LOAD_PATH`: `/rubystubs/rubystubs31/global_variables.rb`
+* Il codice viene eseguito immediatamente: nel top-level, in una classe, in un modulo.
+*  Se invece per esempio siamo in un metodo di una classe per eseguire il codice serve una istanza della classe.
 
 # super, superclass
 * Non confondiamo le cose. Quando chiamo `super` vado a cercare nella catena degli ancestor (che include sia classi che moduli) per cercare il nome di un metodo.

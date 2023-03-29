@@ -135,9 +135,10 @@ end
   * Assicuriamoci che il codice sia testato bene perché andremo a cambiarlo.
   * Usare il `time = Benchmark.realtime {...codice...}` per misurare l'incremento delle performance.  
     __NB__: Il profilatore per questa parte non è affidabile, perché a volte segnala degli incrementi che poi non si rivelano tali nel mondo reale. Questo perché il profilatore si mette in mezzo a tutte le chiamate e le profila... e questo costo per ogni chiamata nel mondo reale non c'è.
+    Per Prove ripetute e indipendenti: da console fare per esempio: `for i in {1..30}; do ruby _tool_tester.rb; done`
   * Usare il `RubyProf::Profile.new` per capire cosa si può migliorare, e scegliere un tipo di visualizzione dei risultati che ci piace.
   * Meglio poi salvarsi i file delle varie profilazioni con nomi diversi così poi li possiamo confrontare tra di loro.
-  *  Ruby è un linguaggio interpretato quindi anche la "chiamata" di una funzione ha il suo costo. Possiamo anche porre l'attenzione su quante chiamate a funzioni facciamo... ricordandoci però che la fonte di verità sui tempi è il benchmark.
+  * Ruby è un linguaggio interpretato quindi anche la "chiamata" di una funzione ha il suo costo. Possiamo anche porre l'attenzione su quante chiamate a funzioni facciamo... ricordandoci però che la fonte di verità sui tempi è il benchmark.
 
 ## __La Memoria__ (difficile)
 * Responsabile per l'80 % delle performance.
