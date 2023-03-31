@@ -118,6 +118,9 @@ end
 * Anche gli helper come `link_to`, `url_for`, `img_tag` nascondono delle insidie. Sebbene sia difficile farne a meno tenaimo almeno in conto queste osservazioni: Più il routing diventa complesso e più il `link_to` e l' `url_for` rallentano.
   Più abbiamo assets e più `img_tag` rallenta.
 
+## `Active Support Instrumentation`
+* Un'arma potente di Rails per capire cosa sta succedendo e come ottimizzare: [Active Support Instrumentation](https://guides.rubyonrails.org/active_support_instrumentation.html)
+
 # Monitoraggio e Profilazione
 * Dobbiamo concentrarci su due aspetti:
 * __1)__ La CPU
