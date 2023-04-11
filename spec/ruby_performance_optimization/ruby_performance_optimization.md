@@ -173,3 +173,30 @@ end
   * Ho migliorato la performance
   * Ho peggiorato la performance
 * In ogni caso vale la pena vedere cosa è successo.
+
+# Milgiorare le performance dell'infrastruttura
+* Dobbiamo tenere conto delle `librerie esterne` e dell'`ambiente di produzione`.
+* Ricordiamoci che più l'uso della memoria è elevato più le performance calano e che la quantità di memoria allocata tende inesorabilmente ad aumentare. Più a lungo un'applicazione gira, più nel tempo tenderà a diventare lenta.
+* Per cui il __restart__ dell'applicazione spesso è benefico perché libera risporse.
+* Altre osservazioni:
+* Possiamo fare il `fork` dei processi "esosi" di memoria, in questo modo solo per il processo figlio la memoria aumenta, ma quando termina, il processo padre non risentirà di quell'aumento.
+ ```
+ pid = fork do
+    heavy_method
+ end
+ Process::waitpid(pid)
+ ```
+* Possiamo usare dei job in background, per esempio cose come Sidekiq. Però attenzione anche qui, perché per esempio lo stesso Sidekiq usa i thread e non processi separati. Tutti questi thread condividono lo stesso `ObjectSpace` così che se un thread ha dei problemi legati alla memoria l'intero processo di tutti i thread ne risente.
+
+# Migliorare le performance del database
+* E' importante non pensare al database solo come un contenitore stupido di dati ma sfruttarne le potenzialità perché spesso si guadagnano ordini di grandezza in performance!
+* Per esempio il setting di default di PostgreSQL è inadeguato. Nel `postgresql.conf` bisognerebbe impostare:
+  * La possibilità di utilizzare tutta la memoria disponibile.
+  * Fare in modo che abbia abbastanza memoria per tenere da parte i risultati intermedi.
+  * Il log delle query lente in modo da poterle migliorare.
+
+# Tuning produzione in ordine di priorità
+* Tanta RAM disponibile
+* Performance I/O in caso di numerose letture e scritture
+* Tuning del databse
+* Tutto il resto

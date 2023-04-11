@@ -1,0 +1,2 @@
+# Metaprogramming Ruby 2
+* Sotto la cartella `/spec/metaprogramming_ruby_2/spells` ci sono tutti i trucchi di metaprogrammazione possibili con spiegazione, mentre sotto `/spec/metaprogramming_ruby_2/pictures` ci sono degli schemi dell'object model di Ruby. 
