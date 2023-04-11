@@ -1,0 +1,1 @@
+segnarsi i tool interessanti e poi guardarseli a parte tipo il gdb debugger.
