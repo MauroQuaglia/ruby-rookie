@@ -178,6 +178,8 @@ end
 * Dobbiamo tenere conto delle `librerie esterne` e dell'`ambiente di produzione`.
 * Ricordiamoci che più l'uso della memoria è elevato più le performance calano e che la quantità di memoria allocata tende inesorabilmente ad aumentare. Più a lungo un'applicazione gira, più nel tempo tenderà a diventare lenta.
 * Per cui il __restart__ dell'applicazione spesso è benefico perché libera risporse.
+  * Per esempio la frammentazione della memoria viene sistemata. 
+  * Oppure i piccoli oggetti che occupano meno di 40 byte e che per costruzione hanno allocato uno spazio di 40 byte comunque?
 * Altre osservazioni:
 * Possiamo fare il `fork` dei processi "esosi" di memoria, in questo modo solo per il processo figlio la memoria aumenta, ma quando termina, il processo padre non risentirà di quell'aumento.
  ```

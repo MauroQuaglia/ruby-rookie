@@ -1,4 +1,5 @@
 # Tuning
+* [GC-varibili](https://blog.appsignal.com/2021/11/17/practical-garbage-collection-tuning-in-ruby.html)
 * oggetti            -> memorizzati nella heap di Ruby
 * non oggetti (dati) -> memorizzati nella heap del SO
 
