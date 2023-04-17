@@ -1,3 +1,7 @@
+# Esempio:
+# Il `ObjectSpace.each_object(Thing)` permette di vedere quanti oggetti Thing ci sono in giro.
+# Il `ObjectSpace.count_objects(my_hash)` permette di vedere quanti oggetti ci sono in giro.
+
 def my_object_space(title)
   GC.enable
 

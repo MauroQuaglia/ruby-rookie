@@ -3,34 +3,30 @@
 * Un elevato consumo di memoria è intrinseco in Ruby, è un effetto collaterale del "Tutto è un oggetto". Inoltre il GC
   lento è un problema atavico di Ruby.
 * Con il GC disattivato le ultime versioni di Ruby e le prime quasi si equivalgono in termini di performance.
-* Con il GC attivo le ultime versioni di Ruby sono nettamente più veloci.
+* Con il GC attivo le ultime versioni di Ruby (>= 2.2) sono nettamente più veloci.
     * Sono state migliorate le performance del GC.
 * Più usiamo memoria, più il GC dovrà intervenire e operare. Il consumo di memoria e il GC sono le principali ragioni
   per cui Ruby è lento.
 * Disabilitare il GC non è mai una buona idea, la memoria peggiora al punto che le performance degradano rapidamente.
 * Ricordiamo poi che la maggioranza dei problemi di performance provengono da poche specifiche parti di un codice.
-* Il `ObjectSpace.each_object(Thing)` permette di vedere quanti oggetti Thing ci sono in giro.
-* Il `ObjectSpace.count_objects(my_hash)` permette di vedere quanti oggetti ci sono in giro.
-* Usare il `my_measure` tool per verificare le performance o la versione __easy__ per confronti veloci.
+* Sotto `tools` ci sono tutti i vari tool, con le spiegazioni per misurare performance di cpu e memoria.
 * Se si parla di performance bisognerebbe anche capire chi deve fare cosa. 
   * Per esempio fare ordinamenti in Rails su dei Modelli a database non è efficiente. I database sono ottimizzati per quello e scalano molto meglio quindi se ci si può appoggiare a loro tanto meglio.
 * Se alcune parti sono particolarmente lente si posso anche cercare delle gemme scritte in C puro che di base sono molto più veloci.
   * Esistono gemme che hanno riscritto parti lente di Ruby o Rails in C.
   * Gemme che riscrivono specifici task in C.
 * Rails
-  * Se non possofare a meno di usare ActiveRecord (che è molto esoso) quando faccio le query è sempre meglio evitare le `select *` e prendere solo le colone indispensabili.Questo soprattutto nelle `join`.
+  * Se non posso fare a meno di usare ActiveRecord (che è molto esoso) quando faccio le query è sempre meglio evitare le `select *` e prendere solo le colone indispensabili. Questo soprattutto nelle `join`.
   * Anche usare i `belongs_to` e gli `has_many` aiuta.
+  
 # GC
-
 * [una guida](https://www.speedshop.co/2017/03/09/a-guide-to-gc-stat.html)
 * [T_NODE](https://github.blog/2019-06-04-direct-instruction-marking-in-ruby-2-6/)
 * Quando non sono in produzione lo posso forzare a girare con `GC.start`.
-* In automatico viene triggerato quando la memoria ha raggiunto un certo livello di occupazione. Meno uccupiamo la
+* In automatico viene triggerato quando la memoria ha raggiunto un certo livello di occupazione. Meno occupiamo la
   memoria meno viene lanciato.
 
-
 # Best Practices
-
 1) Ottimizza la memoria
 
 * L'80% delle performance si ottengono da una ottimizzazione della memoria, l'altro 20% da tutto il resto.
