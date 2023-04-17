@@ -43,12 +43,20 @@
 
 * In questo modo non usiamo memoria addizionale, memorizziamo solo la riga su cui stiamo facendo cose e poi il GC appena
   si attiva la butta.
-* In effetti si vede che con il GC attivo le prestazioni migliorano e la memoria rimane bassissima.
+* In effetti si vede che con il __GC attivo__ le prestazioni migliorano e la memoria rimane bassissima.
 * Per esempio invece di `File.readlines('data.csv')` è meglio
 
 ```
 file = File.open('data.csv', 'r'); 
 while line = file.gets
+...
+end
+```
+oppure
+```
+file = CSV.open('data.csv'); 
+while line = file.readline
+...
 end
 ```
 
