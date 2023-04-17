@@ -15,3 +15,7 @@ Vediamo anche un paio di valori del `GC.stat`:
 :count=>23 # Numero delle volte che è girato                               
 :heap_allocated_pages=>141 # 141 pagine * 409 oggetti per pagina * 40 byte per oggetto = 2306760 bytes = 2.2 MB di memoria allocata per la heap
 ```
+
+* Il GC controlla sia la memoria heap di Ruby che la memoria fuori dall'heap di Ruby. Quindi due eventi fanno cattare il GC:
+  * Non ci sono più slot disponibili nella heap
+  * La current-memory-allocation (malloc) non ha più spazio
