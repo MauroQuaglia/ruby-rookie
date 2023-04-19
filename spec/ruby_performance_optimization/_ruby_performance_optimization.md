@@ -66,6 +66,10 @@ end
 * Per cui anche se l'oggetto originale (quello in cui ho scritto il blocco) non ci serve più, rimane comunque in memoria
   finché la `Proc` è memorizzata da qualche parte.
 * Il GC, non pulirà quegli oggetti e potrebbero verificarsi dei memory leak.
+* Si può provare a passare dei blocchi anonimi e poi usare l'`yield` se possibile, questo a volte non soffre dello stesso problema. 
+  Diciamo che di base con `yield` viene tenuto un riferimento al blocco tramite un puntatore nello stack, mentre quando avviene la conversione a `Proc` (`&block`)
+  viene fatta una duplicazione del contesto del blocco... il che occupa memoria. Tuttavia non è mai chiaro dove Ruby faccia, se le fa, queste conversioni.
+  
 
 5) Iteratori
 * Quando abbiamo __grosse__ liste di dati, l'iteratore tiene tutto in memoria finche non ho attraversato la lista, e poi
