@@ -139,7 +139,7 @@ end
 ## __La CPU__ (facile)
 * Responsabile per il 20 % delle performance.
 * Monitoraggio: benchmark
-* Profilazione: [ruby_prof](https://rubygems.org/gems/ruby-prof)
+* Profilazione: [ruby_prof](https://rubygems.org/gems/ruby-prof), kcachegrind
 * Cose da fare:
   * Disabilitare il __GC__ perché crea molta interferenza. Nel caso di Rails si può anche creare un middelware specifico per tutta l'applicazione.
   * Profiliamo in produzione perché il locale non è affidabile. Pensiamo per esempio in Rails ai differenti setting `/config/environments/production.rb` e `/config/environments/development.rb`
@@ -160,7 +160,7 @@ end
 
 ## __La misura dei risultati (se proprio le cose semplici non bastano)__
 * Il più delle volte qualche prova ripetuta e l'intuito ci guidano verso la soluzione... ma in un sistema complesso ci possono essere fattori esterni ed interni che la rendono poco stabile.
-* Per esempio il GC o dei processi che sta girando in background.
+* Per esempio il GC o dei processi che stanno girando in background.
 * Dobbiamo assicurarci di pulire la memoria prima della misurazione, assicurarci che niente giri in parallelo, ...
 * Alcune delle cose che possiamo fare sono:
   * La frequenza della CPU non dovrebbe scalare automaticamente: `cpupower frequency-info`. 
@@ -177,7 +177,7 @@ end
 ## __Testing__
 * Ci sono molti modi complicati di farlo, perché come abbiamo detto la misura è influenzata da molti fattori... figuriamoci lanciando l'intera suite di test.
 * Comunque possiamo provare a impostare una soglia o un intervallo di tempo in cui il tempo di esecuzione del mio specifico codice deve stare.
-* Se il test dice che suono fuori dall'intervallo possono essere successe due cose:
+* Se il test dice che sono fuori dall'intervallo possono essere successe due cose:
   * Ho migliorato la performance
   * Ho peggiorato la performance
 * In ogni caso vale la pena vedere cosa è successo.
