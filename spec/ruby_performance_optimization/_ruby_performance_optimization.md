@@ -164,7 +164,7 @@ end
 * Dobbiamo assicurarci di pulire la memoria prima della misurazione, assicurarci che niente giri in parallelo, ...
 * Alcune delle cose che possiamo fare sono:
   * La frequenza della CPU non dovrebbe scalare automaticamente: `cpupower frequency-info`. 
-  * Per esempio posiamo dire alla CPU di girare alla sua frequenza massima con cose del tipo `sudo cpupower frequency-set -g performance`. 
+  * Per esempio possiamo dire alla CPU di girare alla sua frequenza massima con cose del tipo `sudo cpupower frequency-set -g performance`. 
   * In questo modo la impostiamo alla massima e gli diciamo di non scalare.
 * Warm-up:
   * Capiamo se stiamo eseguendo codice con dati in cache o meno.
@@ -186,8 +186,7 @@ end
 * Dobbiamo tenere conto delle `librerie esterne` e dell'`ambiente di produzione`.
 * Ricordiamoci che più l'uso della memoria è elevato più le performance calano e che la quantità di memoria allocata tende inesorabilmente ad aumentare. Più a lungo un'applicazione gira, più nel tempo tenderà a diventare lenta.
 * Per cui il __restart__ dell'applicazione spesso è benefico perché libera risporse.
-  * Per esempio la frammentazione della memoria viene sistemata. 
-  * Oppure i piccoli oggetti che occupano meno di 40 byte e che per costruzione hanno allocato uno spazio di 40 byte comunque?
+  * Per esempio la frammentazione della memoria viene sistemata.
 * Altre osservazioni:
 * Possiamo fare il `fork` dei processi "esosi" di memoria, in questo modo solo per il processo figlio la memoria aumenta, ma quando termina, il processo padre non risentirà di quell'aumento.
  ```
@@ -208,5 +207,5 @@ end
 # Tuning produzione in ordine di priorità
 * Tanta RAM disponibile
 * Performance I/O in caso di numerose letture e scritture
-* Tuning del databse
+* Tuning del database
 * Tutto il resto
