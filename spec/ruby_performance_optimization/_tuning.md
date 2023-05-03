@@ -7,7 +7,7 @@ Ogni oggetto è rappresentato internamente da una struttura RVALUE la cui dimens
 Da `irb` si vede anche guardando il `GC::INTERNAL_CONSTANTS`, che ci dice `:RVALUE_SIZE=>40`.
 Vedere anche [gc-internal](https://jemma.dev/blog/gc-internal)
 ```
-ObjectSpace.memsize_of('x') => 40
+ObjectSpace.memsize_of('x') => 40 
 ObjectSpace.memsize_of('x' * 23) => 40
 ObjectSpace.memsize_of('x' * 24) => 65
 ```
